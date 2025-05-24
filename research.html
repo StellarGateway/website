@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Research Excellence - The Stellar Gateway</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        background: #0a0a0f;
+        color: #ffffff;
+        overflow-x: hidden;
+        line-height: 1.6;
+      }
+
+      /* Star Field Background */
+      .stars {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -2;
+      }
+
+      .star {
+        position: absolute;
+        background: white;
+        border-radius: 50%;
+        animation: twinkle 4s infinite ease-in-out;
+      }
+
+      .star.bright {
+        background: #4f46e5;
+        box-shadow: 0 0 6px #4f46e5;
+      }
+
+      @keyframes twinkle {
+        0%,
+        100% {
+          opacity: 0.3;
+          transform: scale(0.8);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.2);
+        }
+      }
+
+      /* Nebula Effect */
+      .nebula {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          ellipse at 60% 30%,
+          rgba(168, 85, 247, 0.08) 0%,
+          transparent 40%
+        );
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      /* Header */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        padding: 1rem 2rem;
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(10, 10, 15, 0.9);
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .logo {
+        font-size: 1.6rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #4f46e5, #7c3aed, #ec4899);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+      }
+
+      .logo i {
+        font-size: 1.8rem;
+        color: #4f46e5;
+        animation: rotate 4s linear infinite;
+      }
+
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2.5rem;
+        list-style: none;
+        align-items: center;
+      }
+
+      .nav-links a {
+        color: #ffffff;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        position: relative;
+        font-weight: 500;
+        padding: 0.5rem 0;
+      }
+
+      .nav-links a:hover {
+        color: #7c3aed;
+      }
+
+      .nav-links a.active {
+        color: #7c3aed;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(45deg, #4f46e5, #7c3aed);
+        transition: width 0.3s ease;
+      }
+
+      .nav-links a:hover::after,
+      .nav-links a.active::after {
+        width: 100%;
+      }
+
+      .btn-primary {
+        padding: 0.6rem 1.5rem;
+        background: linear-gradient(135deg, #4f46e5, #7c3aed);
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
+      }
+
+      /* Mobile Menu */
+      .mobile-menu-btn {
+        display: none;
+        flex-direction: column;
+        gap: 4px;
+        cursor: pointer;
+        padding: 8px;
+      }
+
+      .mobile-menu-btn span {
+        width: 25px;
+        height: 3px;
+        background: #ffffff;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+      }
+
+      .mobile-menu {
+        position: fixed;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(10, 10, 15, 0.98);
+        backdrop-filter: blur(20px);
+        padding: 2rem;
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 999;
+      }
+
+      .mobile-menu.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .mobile-menu-links {
+        list-style: none;
+        text-align: center;
+      }
+
+      .mobile-menu-links li {
+        margin-bottom: 1.5rem;
+      }
+
+      .mobile-menu-links a {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 1.2rem;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      .mobile-menu-links a:hover {
+        color: #7c3aed;
+      }
+
+      /* Hero Section */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+        padding: 8rem 2rem 4rem;
+        background: radial-gradient(
+          ellipse at center,
+          rgba(79, 70, 229, 0.1) 0%,
+          transparent 70%
+        );
+      }
+
+      .hero-content {
+        max-width: 900px;
+      }
+
+      .hero-badge {
+        display: inline-block;
+        padding: 0.5rem 1.5rem;
+        background: rgba(79, 70, 229, 0.1);
+        border: 1px solid rgba(79, 70, 229, 0.3);
+        border-radius: 50px;
+        color: #a78bfa;
+        font-size: 0.9rem;
+        font-weight: 500;
+        margin-bottom: 2rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(3rem, 6vw, 5rem);
+        font-weight: 900;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(135deg, #4f46e5, #7c3aed, #ec4899);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        line-height: 1.1;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 3rem;
+        opacity: 0.8;
+        line-height: 1.7;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* Main Content */
+      .main-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 6rem 2rem;
+      }
+
+      .section {
+        margin-bottom: 6rem;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
+        background: linear-gradient(135deg, #4f46e5, #7c3aed);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .section-description {
+        font-size: 1.1rem;
+        opacity: 0.8;
+        line-height: 1.7;
+        margin-bottom: 3rem;
+      }
+
+      /* Research Cards */
+      .research-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 2.5rem;
+        margin-bottom: 4rem;
+      }
+
+      .research-card {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 24px;
+        padding: 2.5rem;
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .research-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(135deg, #4f46e5, #7c3aed, #ec4899);
+      }
+
+      .research-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+        border-color: rgba(124, 58, 237, 0.3);
+      }
+
+      .research-card h3 {
+        font-size: 1.6rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: #ffffff;
+      }
+
+      .research-meta {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
+      }
+
+      .meta-tag {
+        padding: 0.3rem 0.8rem;
+        background: rgba(79, 70, 229, 0.2);
+        border: 1px solid rgba(79, 70, 229, 0.3);
+        border-radius: 20px;
+        font-size: 0.8rem;
+        color: #a78bfa;
+      }
+
+      .research-card p {
+        opacity: 0.85;
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+      }
+
+      .mentor-info {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .mentor-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #4f46e5, #7c3aed);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+
+      .mentor-details h4 {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 0.2rem;
+      }
+
+      .mentor-details p {
+        font-size: 0.9rem;
+        opacity: 0.7;
+        margin: 0;
+      }
+
+      /* How It Works */
+      .process-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .process-step {
+        text-align: center;
+        padding: 2rem;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        position: relative;
+      }
+
+      .process-number {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #4f46e5, #7c3aed);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin: 0 auto 1.5rem;
+      }
+
+      .process-step h3 {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      .process-step p {
+        opacity: 0.8;
+        line-height: 1.6;
+      }
+
+      /* CTA Section */
+      .cta-section {
+        background: linear-gradient(
+          135deg,
+          rgba(79, 70, 229, 0.1),
+          rgba(124, 58, 237, 0.05)
+        );
+        border-radius: 24px;
+        padding: 4rem 2rem;
+        text-align: center;
+        margin-top: 6rem;
+      }
+
+      .cta-section h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        background: linear-gradient(135deg, #4f46e5, #ec4899);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .cta-section p {
+        font-size: 1.1rem;
+        opacity: 0.8;
+        margin-bottom: 2rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .cta-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1.2rem 2.5rem;
+        background: linear-gradient(135deg, #4f46e5, #7c3aed);
+        color: white;
+        text-decoration: none;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+      }
+
+      .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 35px rgba(124, 58, 237, 0.4);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .btn-primary {
+          display: none;
+        }
+
+        .mobile-menu-btn {
+          display: flex;
+        }
+
+        .hero {
+          padding: 6rem 1rem 4rem;
+        }
+
+        .research-grid,
+        .process-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .main-content {
+          padding: 4rem 1rem;
+        }
+      }
+
+      /* Loading Animation */
+      .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #0a0a0f;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease;
+      }
+
+      .loading-spinner {
+        width: 50px;
+        height: 50px;
+        border: 3px solid rgba(79, 70, 229, 0.3);
+        border-top: 3px solid #4f46e5;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Animated Background -->
+    <div class="stars" id="stars"></div>
+    <div class="nebula"></div>
+
+    <!-- Header -->
+    <header>
+      <nav>
+        <a href="index.html" class="logo">
+          <i class="fas fa-star"></i>
+          The Stellar Gateway
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#programs">Programs</a></li>
+          <li><a href="research.html" class="active">Research</a></li>
+          <li><a href="education.html">Education</a></li>
+          <li><a href="speakers.html">Speakers</a></li>
+          <li><a href="index.html#impact">Impact</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <a href="index.html#apply" class="btn-primary">Apply Now</a>
+        <!-- Mobile Menu Button -->
+        <div class="mobile-menu-btn" id="mobileMenuBtn">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+
+      <!-- Mobile Menu -->
+      <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-menu-links">
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#programs">Programs</a></li>
+          <li><a href="research.html">Research</a></li>
+          <li><a href="education.html">Education</a></li>
+          <li><a href="speakers.html">Speakers</a></li>
+          <li><a href="index.html#impact">Impact</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+          <li><a href="index.html#apply">Apply Now</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i class="fas fa-microscope"></i> Research Excellence
+        </div>
+        <h1>Collaborative Research Program</h1>
+        <p>
+          Partner with world-renowned astronomers from Harvard, Stanford, MIT,
+          Princeton, and Columbia to conduct cutting-edge research and publish
+          in peer-reviewed journals.
+        </p>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Current Research Projects -->
+      <section class="section">
+        <h2 class="section-title">Current Research Projects</h2>
+        <p class="section-description">
+          Our student researchers are working on exciting projects across
+          various fields of astronomy, guided by expert mentors from top
+          universities.
+        </p>
+
+        <div class="research-grid">
+          <div class="research-card">
+            <h3>Exoplanet Detection Using Machine Learning</h3>
+            <div class="research-meta">
+              <span class="meta-tag">Exoplanets</span>
+              <span class="meta-tag">Machine Learning</span>
+              <span class="meta-tag">Data Analysis</span>
+            </div>
+            <p>
+              Developing advanced algorithms to identify potentially habitable
+              exoplanets in Kepler mission data, with focus on improving
+              detection accuracy for Earth-sized planets in habitable zones.
+            </p>
+            <div class="mentor-info">
+              <div class="mentor-avatar">DR</div>
+              <div class="mentor-details">
+                <h4>Dr. Sarah Chen</h4>
+                <p>Harvard University - Exoplanet Research</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="research-card">
+            <h3>Galaxy Formation Simulations</h3>
+            <div class="research-meta">
+              <span class="meta-tag">Cosmology</span>
+              <span class="meta-tag">Simulations</span>
+              <span class="meta-tag">Dark Matter</span>
+            </div>
+            <p>
+              Investigating the role of dark matter in early galaxy formation
+              through high-resolution N-body simulations, comparing results with
+              observations from James Webb Space Telescope.
+            </p>
+            <div class="mentor-info">
+              <div class="mentor-avatar">MP</div>
+              <div class="mentor-details">
+                <h4>Prof. Michael Park</h4>
+                <p>Stanford University - Theoretical Astrophysics</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="research-card">
+            <h3>Variable Star Classification</h3>
+            <div class="research-meta">
+              <span class="meta-tag">Stellar Physics</span>
+              <span class="meta-tag">Photometry</span>
+              <span class="meta-tag">Statistical Analysis</span>
+            </div>
+            <p>
+              Creating automated classification systems for variable stars using
+              time-series photometry data from TESS, improving our understanding
+              of stellar evolution and pulsation mechanisms.
+            </p>
+            <div class="mentor-info">
+              <div class="mentor-avatar">EJ</div>
+              <div class="mentor-details">
+                <h4>Dr. Emily Johnson</h4>
+                <p>MIT - Stellar Astrophysics</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="research-card">
+            <h3>Gravitational Wave Analysis</h3>
+            <div class="research-meta">
+              <span class="meta-tag">Gravitational Waves</span>
+              <span class="meta-tag">LIGO</span>
+              <span class="meta-tag">Signal Processing</span>
+            </div>
+            <p>
+              Developing new techniques for detecting gravitational wave signals
+              from binary neutron star mergers, contributing to multi-messenger
+              astronomy research efforts.
+            </p>
+            <div class="mentor-info">
+              <div class="mentor-avatar">DM</div>
+              <div class="mentor-details">
+                <h4>Dr. David Martinez</h4>
+                <p>Princeton University - Gravitational Physics</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="research-card">
+            <h3>Solar Activity Prediction</h3>
+            <div class="research-meta">
+              <span class="meta-tag">Solar Physics</span>
+              <span class="meta-tag">Space Weather</span>
+              <span class="meta-tag">Predictive Modeling</span>
+            </div>
+            <p>
+              Building predictive models for solar flare activity using magnetic
+              field observations, with applications for space weather
+              forecasting and satellite protection.
+            </p>
+            <div class="mentor-info">
+              <div class="mentor-avatar">AL</div>
+              <div class="mentor-details">
+                <h4>Prof. Anna Liu</h4>
+                <p>Columbia University - Solar-Terrestrial Physics</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- How It Works -->
+      <section class="section">
+        <h2 class="section-title">How Our Research Program Works</h2>
+        <p class="section-description">
+          A structured approach to conducting world-class astronomy research
+          while building essential skills for academic and professional success.
+        </p>
+
+        <div class="process-grid">
+          <div class="process-step">
+            <div class="process-number">1</div>
+            <h3>Application & Matching</h3>
+            <p>
+              Submit your research interests and background. We match you with
+              mentors based on your goals and their expertise areas.
+            </p>
+          </div>
+
+          <div class="process-step">
+            <div class="process-number">2</div>
+            <h3>Project Planning</h3>
+            <p>
+              Work with your mentor to define research questions, methodology,
+              and timeline. Receive guidance on literature review and research
+              design.
+            </p>
+          </div>
+
+          <div class="process-step">
+            <div class="process-number">3</div>
+            <h3>Research Execution</h3>
+            <p>
+              Conduct research with regular mentor meetings, access to datasets
+              and tools, and support from our research community.
+            </p>
+          </div>
+
+          <div class="process-step">
+            <div class="process-number">4</div>
+            <h3>Publication & Presentation</h3>
+            <p>
+              Write research papers for peer-reviewed journals and present
+              findings at conferences with mentor co-authorship.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Research Resources -->
+      <section class="section">
+        <h2 class="section-title">Research Resources & Support</h2>
+        <p class="section-description">
+          Access to professional-grade tools and resources typically available
+          only to graduate students and researchers.
+        </p>
+
+        <div class="research-grid">
+          <div class="research-card">
+            <h3>
+              <i
+                class="fas fa-database"
+                style="color: #4f46e5; margin-right: 0.5rem"
+              ></i
+              >Data Access
+            </h3>
+            <p>
+              Access to major astronomical databases including NASA archives,
+              ESA missions, and ground-based survey data through institutional
+              partnerships.
+            </p>
+          </div>
+
+          <div class="research-card">
+            <h3>
+              <i
+                class="fas fa-laptop-code"
+                style="color: #7c3aed; margin-right: 0.5rem"
+              ></i
+              >Computing Resources
+            </h3>
+            <p>
+              High-performance computing clusters for simulations, data analysis
+              software licenses, and cloud computing credits for large-scale
+              projects.
+            </p>
+          </div>
+
+          <div class="research-card">
+            <h3>
+              <i
+                class="fas fa-graduation-cap"
+                style="color: #ec4899; margin-right: 0.5rem"
+              ></i
+              >Training Workshops
+            </h3>
+            <p>
+              Regular workshops on research methodology, statistical analysis,
+              scientific writing, and presentation skills led by our mentors.
+            </p>
+          </div>
+
+          <div class="research-card">
+            <h3>
+              <i
+                class="fas fa-users"
+                style="color: #10b981; margin-right: 0.5rem"
+              ></i
+              >Peer Community
+            </h3>
+            <p>
+              Connect with fellow student researchers, participate in journal
+              clubs, and collaborate on interdisciplinary projects.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Success Stories -->
+      <section class="section">
+        <h2 class="section-title">Research Success Stories</h2>
+        <p class="section-description">
+          Our students are already making meaningful contributions to
+          astronomical research in their first month.
+        </p>
+
+        <div class="research-grid">
+          <div class="research-card">
+            <h3>First Light: Early Results</h3>
+            <p>
+              "Working with Dr. Chen on exoplanet detection has been incredible.
+              We've already identified several planet candidates that warrant
+              follow-up observations. The mentorship is unlike anything I've
+              experienced in traditional education."
+            </p>
+            <div class="mentor-info">
+              <div class="mentor-avatar">AS</div>
+              <div class="mentor-details">
+                <h4>Alex Santos</h4>
+                <p>High School Senior - California</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="research-card">
+            <h3>Building Skills for the Future</h3>
+            <p>
+              "The research program taught me Python, statistical analysis, and
+              scientific writing. These skills are already helping in my college
+              applications and will be invaluable in my astronomy career."
+            </p>
+            <div class="mentor-info">
+              <div class="mentor-avatar">MR</div>
+              <div class="mentor-details">
+                <h4>Maya Rodriguez</h4>
+                <p>College Freshman - Texas</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Call to Action -->
+      <section class="cta-section">
+        <h2>Ready to Start Your Research Journey?</h2>
+        <p>
+          Join our community of student researchers and work alongside
+          world-class mentors to make meaningful contributions to astronomy.
+        </p>
+        <a href="index.html#apply" class="cta-button">
+          <i class="fas fa-rocket"></i>
+          Apply for Research Program
+        </a>
+      </section>
+    </div>
+
+    <script>
+      // Create stars
+      function createStars() {
+        const starsContainer = document.getElementById("stars");
+        const numStars = 150;
+
+        for (let i = 0; i < numStars; i++) {
+          const star = document.createElement("div");
+          star.className = "star";
+
+          if (Math.random() > 0.8) {
+            star.classList.add("bright");
+          }
+
+          star.style.left = Math.random() * 100 + "%";
+          star.style.top = Math.random() * 100 + "%";
+          star.style.width = Math.random() * 3 + 1 + "px";
+          star.style.height = star.style.width;
+          star.style.animationDelay = Math.random() * 4 + "s";
+          star.style.animationDuration = Math.random() * 3 + 3 + "s";
+          starsContainer.appendChild(star);
+        }
+      }
+
+      // Loading animation
+      function hideLoadingOverlay() {
+        const overlay = document.getElementById("loadingOverlay");
+        setTimeout(() => {
+          overlay.style.opacity = "0";
+          setTimeout(() => {
+            overlay.style.display = "none";
+          }, 500);
+        }, 800);
+      }
+
+      // Mobile Menu Functions
+      function setupMobileMenu() {
+        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+
+        mobileMenuBtn.addEventListener("click", () => {
+          mobileMenu.classList.toggle("active");
+        });
+
+        // Close menu when clicking on links
+        const mobileLinks = document.querySelectorAll(".mobile-menu-links a");
+        mobileLinks.forEach((link) => {
+          link.addEventListener("click", () => {
+            mobileMenu.classList.remove("active");
+          });
+        });
+      }
+
+      // Initialize
+      document.addEventListener("DOMContentLoaded", function () {
+        hideLoadingOverlay();
+        createStars();
+        setupMobileMenu();
+      });
+    </script>
+  </body>
+</html>

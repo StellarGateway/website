@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expert Speakers - The Stellar Gateway</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        background: #0a0a0f;
+        color: #ffffff;
+        overflow-x: hidden;
+        line-height: 1.6;
+      }
+
+      /* Star Field Background */
+      .stars {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -2;
+      }
+
+      .star {
+        position: absolute;
+        background: white;
+        border-radius: 50%;
+        animation: twinkle 4s infinite ease-in-out;
+      }
+
+      .star.bright {
+        background: #4f46e5;
+        box-shadow: 0 0 6px #4f46e5;
+      }
+
+      @keyframes twinkle {
+        0%,
+        100% {
+          opacity: 0.3;
+          transform: scale(0.8);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.2);
+        }
+      }
+
+      /* Nebula Effect */
+      .nebula {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          ellipse at 40% 70%,
+          rgba(236, 72, 153, 0.08) 0%,
+          transparent 40%
+        );
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      /* Header */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        padding: 1rem 2rem;
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(10, 10, 15, 0.9);
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .logo {
+        font-size: 1.6rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #4f46e5, #7c3aed, #ec4899);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+      }
+
+      .logo i {
+        font-size: 1.8rem;
+        color: #4f46e5;
+        animation: rotate 4s linear infinite;
+      }
+
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2.5rem;
+        list-style: none;
+        align-items: center;
+      }
+
+      .nav-links a {
+        color: #ffffff;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        position: relative;
+        font-weight: 500;
+        padding: 0.5rem 0;
+      }
+
+      .nav-links a:hover {
+        color: #7c3aed;
+      }
+
+      .nav-links a.active {
+        color: #7c3aed;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(45deg, #4f46e5, #7c3aed);
+        transition: width 0.3s ease;
+      }
+
+      .nav-links a:hover::after,
+      .nav-links a.active::after {
+        width: 100%;
+      }
+
+      .btn-primary {
+        padding: 0.6rem 1.5rem;
+        background: linear-gradient(135deg, #4f46e5, #7c3aed);
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
+      }
+
+      /* Mobile Menu */
+      .mobile-menu-btn {
+        display: none;
+        flex-direction: column;
+        gap: 4px;
+        cursor: pointer;
+        padding: 8px;
+      }
+
+      .mobile-menu-btn span {
+        width: 25px;
+        height: 3px;
+        background: #ffffff;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+      }
+
+      .mobile-menu {
+        position: fixed;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(10, 10, 15, 0.98);
+        backdrop-filter: blur(20px);
+        padding: 2rem;
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 999;
+      }
+
+      .mobile-menu.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .mobile-menu-links {
+        list-style: none;
+        text-align: center;
+      }
+
+      .mobile-menu-links li {
+        margin-bottom: 1.5rem;
+      }
+
+      .mobile-menu-links a {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 1.2rem;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      .mobile-menu-links a:hover {
+        color: #7c3aed;
+      }
+
+      /* Hero Section */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+        padding: 8rem 2rem 4rem;
+        background: radial-gradient(
+          ellipse at center,
+          rgba(236, 72, 153, 0.1) 0%,
+          transparent 70%
+        );
+      }
+
+      .hero-content {
+        max-width: 900px;
+      }
+
+      .hero-badge {
+        display: inline-block;
+        padding: 0.5rem 1.5rem;
+        background: rgba(236, 72, 153, 0.1);
+        border: 1px solid rgba(236, 72, 153, 0.3);
+        border-radius: 50px;
+        color: #f9a8d4;
+        font-size: 0.9rem;
+        font-weight: 500;
+        margin-bottom: 2rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(3rem, 6vw, 5rem);
+        font-weight: 900;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(135deg, #4f46e5, #7c3aed, #ec4899);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        line-height: 1.1;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 3rem;
+        opacity: 0.8;
+        line-height: 1.7;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* Main Content */
+      .main-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 6rem 2rem;
+      }
+
+      .section {
+        margin-bottom: 6rem;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        background: linear-gradient(135deg, #4f46e5, #7c3aed);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .section-subtitle {
+        font-size: 1.1rem;
+        opacity: 0.8;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      /* Speaker Grid */
+      .speakers-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+        margin-bottom: 4rem;
+      }
+
+      .speaker-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 2rem;
+        text-align: center;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+      }
+
+      .speaker-card:hover {
+        transform: translateY(-10px);
+        border-color: rgba(124, 58, 237, 0.3);
+        box-shadow: 0 20px 40px rgba(124, 58, 237, 0.1);
+      }
+
+      .speaker-avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #4f46e5, #7c3aed, #ec4899);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        font-size: 3rem;
+        color: white;
+      }
+
+      .speaker-name {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: #ffffff;
+      }
+
+      .speaker-title {
+        font-size: 1rem;
+        color: #a78bfa;
+        margin-bottom: 1rem;
+      }
+
+      .speaker-bio {
+        font-size: 0.95rem;
+        opacity: 0.8;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+      }
+
+      .speaker-topics {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        justify-content: center;
+      }
+
+      .topic-tag {
+        padding: 0.3rem 0.8rem;
+        background: rgba(79, 70, 229, 0.2);
+        border: 1px solid rgba(79, 70, 229, 0.3);
+        border-radius: 15px;
+        font-size: 0.8rem;
+        color: #a78bfa;
+      }
+
+      /* CTA Section */
+      .cta-section {
+        text-align: center;
+        padding: 4rem 2rem;
+        background: rgba(79, 70, 229, 0.05);
+        border-radius: 20px;
+        border: 1px solid rgba(79, 70, 229, 0.1);
+      }
+
+      .cta-title {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: #ffffff;
+      }
+
+      .cta-subtitle {
+        font-size: 1.1rem;
+        opacity: 0.8;
+        margin-bottom: 2rem;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .cta-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .btn-secondary {
+        padding: 0.8rem 2rem;
+        background: transparent;
+        border: 2px solid #7c3aed;
+        color: #7c3aed;
+        text-decoration: none;
+        border-radius: 10px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .btn-secondary:hover {
+        background: #7c3aed;
+        color: white;
+        transform: translateY(-2px);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .btn-primary {
+          display: none;
+        }
+
+        .mobile-menu-btn {
+          display: flex;
+        }
+
+        .hero {
+          padding: 6rem 1rem 4rem;
+        }
+
+        .speakers-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .main-content {
+          padding: 4rem 1rem;
+        }
+
+        .cta-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+
+      /* Loading Animation */
+      .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #0a0a0f;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease;
+      }
+
+      .loading-spinner {
+        width: 60px;
+        height: 60px;
+        border: 3px solid rgba(79, 70, 229, 0.3);
+        border-top: 3px solid #4f46e5;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Animated Background -->
+    <div class="stars" id="stars"></div>
+    <div class="nebula"></div>
+
+    <!-- Header -->
+    <header>
+      <nav>
+        <a href="index.html" class="logo">
+          <i class="fas fa-star"></i>
+          The Stellar Gateway
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#programs">Programs</a></li>
+          <li><a href="research.html">Research</a></li>
+          <li><a href="education.html">Education</a></li>
+          <li><a href="speakers.html" class="active">Speakers</a></li>
+          <li><a href="index.html#impact">Impact</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <a href="index.html#apply" class="btn-primary">Apply Now</a>
+
+        <!-- Mobile Menu Button -->
+        <div class="mobile-menu-btn" id="mobileMenuBtn">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+
+      <!-- Mobile Menu -->
+      <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-menu-links">
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#programs">Programs</a></li>
+          <li><a href="research.html">Research</a></li>
+          <li><a href="education.html">Education</a></li>
+          <li><a href="speakers.html">Speakers</a></li>
+          <li><a href="index.html#impact">Impact</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+          <li><a href="index.html#apply">Apply Now</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i class="fas fa-microphone"></i> Expert Speakers
+        </div>
+        <h1>Inspiring Speakers</h1>
+        <p>
+          Connect with leading experts, researchers, and innovators who share
+          their knowledge and passion for space exploration, technology, and
+          scientific discovery.
+        </p>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Featured Speakers Section -->
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">Featured Speakers</h2>
+          <p class="section-subtitle">
+            Meet our distinguished speakers who bring cutting-edge insights and
+            real-world experience to inspire the next generation of space
+            explorers and developers.
+          </p>
+        </div>
+
+        <div class="speakers-grid">
+          <div class="speaker-card">
+            <div class="speaker-avatar">
+              <i class="fas fa-rocket"></i>
+            </div>
+            <h3 class="speaker-name">Dr. Sarah Chen</h3>
+            <p class="speaker-title">NASA Astrophysicist & Mission Scientist</p>
+            <p class="speaker-bio">
+              Leading researcher in exoplanet discovery with over 15 years of
+              experience at NASA. Dr. Chen has contributed to major space
+              missions and specializes in data analysis and astronomical
+              software development.
+            </p>
+            <div class="speaker-topics">
+              <span class="topic-tag">Exoplanet Research</span>
+              <span class="topic-tag">Data Science</span>
+              <span class="topic-tag">Space Missions</span>
+            </div>
+          </div>
+
+          <div class="speaker-card">
+            <div class="speaker-avatar">
+              <i class="fas fa-code"></i>
+            </div>
+            <h3 class="speaker-name">Alex Rodriguez</h3>
+            <p class="speaker-title">SpaceX Software Engineer</p>
+            <p class="speaker-bio">
+              Full-stack developer and systems architect at SpaceX, specializing
+              in mission-critical software systems. Alex bridges the gap between
+              space exploration and cutting-edge web technologies.
+            </p>
+            <div class="speaker-topics">
+              <span class="topic-tag">Software Engineering</span>
+              <span class="topic-tag">Web Development</span>
+              <span class="topic-tag">Systems Architecture</span>
+            </div>
+          </div>
+
+          <div class="speaker-card">
+            <div class="speaker-avatar">
+              <i class="fas fa-satellite"></i>
+            </div>
+            <h3 class="speaker-name">Dr. Maria Volkov</h3>
+            <p class="speaker-title">ESA Satellite Technology Specialist</p>
+            <p class="speaker-bio">
+              Expert in satellite communications and space technology with the
+              European Space Agency. Dr. Volkov focuses on developing accessible
+              tools for space data visualization and educational platforms.
+            </p>
+            <div class="speaker-topics">
+              <span class="topic-tag">Satellite Technology</span>
+              <span class="topic-tag">Data Visualization</span>
+              <span class="topic-tag">Educational Tools</span>
+            </div>
+          </div>
+
+          <div class="speaker-card">
+            <div class="speaker-avatar">
+              <i class="fas fa-telescope"></i>
+            </div>
+            <h3 class="speaker-name">James Thompson</h3>
+            <p class="speaker-title">
+              Senior Frontend Developer & Astronomy Enthusiast
+            </p>
+            <p class="speaker-bio">
+              Passionate developer who combines his love for astronomy with
+              modern web technologies. James specializes in creating interactive
+              astronomical applications and has contributed to several
+              open-source space exploration projects.
+            </p>
+            <div class="speaker-topics">
+              <span class="topic-tag">Frontend Development</span>
+              <span class="topic-tag">Interactive Design</span>
+              <span class="topic-tag">Open Source</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Call to Action -->
+      <section class="cta-section">
+        <h2 class="cta-title">Want to Become a Speaker?</h2>
+        <p class="cta-subtitle">
+          Share your expertise with our community. We're always looking for
+          passionate speakers to inspire and educate our members.
+        </p>
+        <div class="cta-buttons">
+          <a href="index.html#contact" class="btn-primary">Apply to Speak</a>
+          <a href="index.html#programs" class="btn-secondary">View Programs</a>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      // Create stars
+      function createStars() {
+        const starsContainer = document.getElementById("stars");
+        const numberOfStars = 150;
+
+        for (let i = 0; i < numberOfStars; i++) {
+          const star = document.createElement("div");
+          star.className = "star";
+
+          if (Math.random() > 0.8) {
+            star.classList.add("bright");
+          }
+
+          star.style.left = Math.random() * 100 + "%";
+          star.style.top = Math.random() * 100 + "%";
+          star.style.width = Math.random() * 3 + 1 + "px";
+          star.style.height = star.style.width;
+          star.style.animationDelay = Math.random() * 4 + "s";
+          star.style.animationDuration = Math.random() * 3 + 3 + "s";
+          starsContainer.appendChild(star);
+        }
+      }
+
+      // Loading animation
+      function hideLoadingOverlay() {
+        const overlay = document.getElementById("loadingOverlay");
+        setTimeout(() => {
+          overlay.style.opacity = "0";
+          setTimeout(() => {
+            overlay.style.display = "none";
+          }, 500);
+        }, 800);
+      }
+
+      // Mobile Menu Functions
+      function setupMobileMenu() {
+        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+
+        mobileMenuBtn.addEventListener("click", () => {
+          mobileMenu.classList.toggle("active");
+        });
+
+        // Close menu when clicking on links
+        const mobileLinks = document.querySelectorAll(".mobile-menu-links a");
+        mobileLinks.forEach((link) => {
+          link.addEventListener("click", () => {
+            mobileMenu.classList.remove("active");
+          });
+        });
+      }
+
+      // Initialize
+      document.addEventListener("DOMContentLoaded", function () {
+        hideLoadingOverlay();
+        createStars();
+        setupMobileMenu();
+      });
+    </script>
+  </body>
+</html>
