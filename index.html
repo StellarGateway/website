@@ -1,679 +1,663 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Stellar Gateway - Democratizing Astronomy Education</title>
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-      rel="stylesheet"
-    />
-    <link 
-      href="styles.css"
-      rel="stylesheet"      
-    />
-  </head>
-  <body>
-    <!-- Loading Overlay -->
-    <div class="loading-overlay" id="loadingOverlay">
-      <div class="loading-spinner"></div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Stellar Gateway - Democratizing Astronomy Education</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <link href="styles.css" rel="stylesheet" />
+</head>
+
+<body>
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner"></div>
+  </div>
+
+  <!-- Animated Background -->
+  <div class="stars" id="stars"></div>
+  <div class="nebula"></div>
+  <div class="particles" id="particles"></div>
+
+  <!-- Header -->
+  <header id="header">
+    <nav>
+      <a href="#" class="logo">
+        <i class="fas fa-star"></i>
+        The Stellar Gateway
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="education.html">Education</a></li>
+        <li><a href="speakers.html">Speakers</a></li>
+        <li><a href="#impact">Impact</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="https://forms.fillout.com/t/8BV75hB38gus" class="btn-primary">Apply Now</a>
+      <div class="mobile-menu-btn" id="mobileMenuBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+      <ul class="mobile-menu-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="education.html">Education</a></li>
+        <li><a href="speakers.html">Speakers</a></li>
+        <li><a href="#impact">Impact</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="https://forms.fillout.com/t/8BV75hB38gus">Apply Now</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <i class="fas fa-rocket"></i> Student-Run Nonprofit
+      </div>
+      <h1>The Stellar Gateway</h1>
+      <div class="subtitle">Democratizing Astronomy Education</div>
+      <p>
+        Empowering students from underserved communities to explore the cosmos
+        through cutting-edge research, educational resources, and mentorship
+        from world-class institutions.
+      </p>
+      <div class="hero-buttons">
+        <a href="https://forms.fillout.com/t/8BV75hB38gus" class="cta-button">
+          <i class="fas fa-user-plus"></i>
+          Join Our Team
+        </a>
+        <a href="#programs" class="cta-secondary">
+          <i class="fas fa-telescope"></i>
+          Explore Programs
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Discord Widget -->
+  <div class="discord-widget">
+    <a href="https://discord.gg/eTYtsQJY4k" class="discord-card" target="_blank">
+      <div class="discord-text">
+        <div class="title">Join Our Discord Community</div>
+        <div class="subtitle">1,247 members online</div>
+      </div>
+      <i class="fas fa-external-link-alt" style="font-size: 0.8rem; opacity: 0.7"></i>
+    </a>
+  </div>
+
+  <!-- About Section -->
+  <section id="about" class="fade-in">
+    <div class="section-header">
+      <div class="section-badge">Our Mission</div>
+      <h2 class="section-title">Breaking Barriers in Astronomy</h2>
+      <p class="section-description">
+        The Stellar Gateway believes that the wonder of the cosmos should be
+        accessible to all. We're a passionate community of students,
+        researchers, and educators working to democratize astronomy education
+        and create pathways for underrepresented students to pursue careers in
+        space science.
+      </p>
+    </div>
+  </section>
+
+  <!-- Programs Section -->
+  <section id="programs" class="fade-in">
+    <div class="section-header">
+      <div class="section-badge">What We Do</div>
+      <h2 class="section-title">Our Impact Programs</h2>
+      <p class="section-description">
+        Three comprehensive pathways designed to guide students from curiosity
+        to career in astronomy
+      </p>
     </div>
 
-    <!-- Animated Background -->
-    <div class="stars" id="stars"></div>
-    <div class="nebula"></div>
-    <div class="particles" id="particles"></div>
-
-    <!-- Header -->
-    <header id="header">
-      <nav>
-        <a href="#" class="logo">
-          <i class="fas fa-star"></i>
-          The Stellar Gateway
-        </a>
-        <ul class="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#programs">Programs</a></li>
-          <li><a href="research.html">Research</a></li>
-          <li><a href="education.html">Education</a></li>
-          <li><a href="speakers.html">Speakers</a></li>
-          <li><a href="#impact">Impact</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-        <a href="index.html#apply" class="btn-primary">Apply Now</a>
-        <div class="mobile-menu-btn" id="mobileMenuBtn">
-          <span></span>
-          <span></span>
-          <span></span>
+    <div class="programs-grid">
+      <div class="program-card slide-in-left">
+        <div class="program-header">
+          <i class="fas fa-microscope program-icon"></i>
+          <div>
+            <h3>Research Excellence</h3>
+            <div class="program-meta">
+              <span class="meta-item">
+                <i class="fas fa-users"></i>
+                8+ Active Mentors
+              </span>
+              <span class="meta-item">
+                <i class="fas fa-rocket"></i>
+                5 Projects Started
+              </span>
+            </div>
+          </div>
         </div>
-      </nav>
-      <div class="mobile-menu" id="mobileMenu">
-        <ul class="mobile-menu-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#programs">Programs</a></li>
-          <li><a href="research.html">Research</a></li>
-          <li><a href="education.html">Education</a></li>
-          <li><a href="speakers.html">Speakers</a></li>
-          <li><a href="#impact">Impact</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="#apply">Apply Now</a></li>
-        </ul>
-      </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="hero-content">
-        <div class="hero-badge">
-          <i class="fas fa-rocket"></i> Student-Run Nonprofit
-        </div>
-        <h1>The Stellar Gateway</h1>
-        <div class="subtitle">Democratizing Astronomy Education</div>
         <p>
-          Empowering students from underserved communities to explore the cosmos
-          through cutting-edge research, educational resources, and mentorship
-          from world-class institutions.
+          Student researchers collaborate directly with world-renowned mentors
+          from Harvard, Stanford, MIT, Princeton, and Columbia to conduct
+          cutting-edge astronomical research and publish in peer-reviewed
+          journals.
         </p>
-        <div class="hero-buttons">
-          <a href="#apply" class="cta-button">
-            <i class="fas fa-user-plus"></i>
+
+        <ul class="program-features">
+          <li>One-on-one mentorship with leading astronomers</li>
+          <li>Access to professional-grade research tools</li>
+          <li>Publication opportunities in top journals</li>
+          <li>Conference presentation support</li>
+          <li>Career guidance and networking</li>
+        </ul>
+
+        <a href="research.html" class="program-cta">
+          Learn More <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <div class="program-card slide-in-right">
+        <div class="program-header">
+          <i class="fas fa-globe program-icon"></i>
+          <div>
+            <h3>Educational Innovation</h3>
+            <div class="program-meta">
+              <span class="meta-item">
+                <i class="fas fa-desktop"></i>
+                3 Websites Built
+              </span>
+              <span class="meta-item">
+                <i class="fas fa-code"></i>
+                Growing Library
+              </span>
+            </div>
+          </div>
+        </div>
+        <p>
+          We develop interactive websites, educational tools, and multimedia
+          content that make complex astronomical concepts accessible and
+          engaging for students worldwide.
+        </p>
+
+        <ul class="program-features">
+          <li>Interactive astronomy simulations</li>
+          <li>Virtual telescope experiences</li>
+          <li>Multilingual educational content</li>
+          <li>Mobile-responsive learning platforms</li>
+          <li>Open-source educational tools</li>
+        </ul>
+
+        <a href="education.html" class="program-cta">
+          Explore Resources <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <div class="program-card slide-in-left">
+        <div class="program-header">
+          <i class="fas fa-microphone program-icon"></i>
+          <div>
+            <h3>Speaker Series</h3>
+            <div class="program-meta">
+              <span class="meta-item">
+                <i class="fas fa-calendar"></i>
+                Launching Soon
+              </span>
+              <span class="meta-item">
+                <i class="fas fa-users"></i>
+                Planning Events
+              </span>
+            </div>
+          </div>
+        </div>
+        <p>
+          Connect with leading astronomers, astrophysicists, and space
+          industry professionals through our exclusive speaker series,
+          workshops, and networking events.
+        </p>
+
+        <ul class="program-features">
+          <li>Monthly expert presentations</li>
+          <li>Interactive Q&A sessions</li>
+          <li>Career pathway workshops</li>
+          <li>Industry networking events</li>
+          <li>Virtual and in-person options</li>
+        </ul>
+
+        <a href="speakers.html" class="program-cta">
+          View Schedule <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners Section -->
+  <section class="partners fade-in">
+    <div class="partners-intro">
+      <div class="section-badge">Our Network</div>
+      <h3>Partnering with World-Class Institutions</h3>
+      <p>
+        Our mentors and collaborators represent the finest minds in astronomy,
+        providing students with unparalleled access to cutting-edge research
+        and career guidance.
+      </p>
+    </div>
+
+    <div class="university-grid">
+      <div class="university-card">
+        <div class="university-logo">HARVARD</div>
+        <div class="university-type">Ivy League</div>
+      </div>
+      <div class="university-card">
+        <div class="university-logo">STANFORD</div>
+        <div class="university-type">Private Research</div>
+      </div>
+      <div class="university-card">
+        <div class="university-logo">MIT</div>
+        <div class="university-type">Tech Institute</div>
+      </div>
+      <div class="university-card">
+        <div class="university-logo">PRINCETON</div>
+        <div class="university-type">Ivy League</div>
+      </div>
+      <div class="university-card">
+        <div class="university-logo">COLUMBIA</div>
+        <div class="university-type">Ivy League</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Impact Stats -->
+  <section id="impact" class="fade-in">
+    <div class="stats-section">
+      <div class="section-header">
+        <div class="section-badge">Our Impact</div>
+        <h2 class="section-title">Building Momentum in Our First Month</h2>
+        <p class="section-description">
+          Early results showing strong engagement and partnership growth as we
+          work to democratize astronomy education
+        </p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <i class="fas fa-users stat-icon"></i>
+          <span class="stat-number">35+</span>
+          <div class="stat-label">Students Engaged</div>
+          <div class="stat-description">
+            Growing community in our first month
+          </div>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-handshake stat-icon"></i>
+          <span class="stat-number">8</span>
+          <div class="stat-label">Mentor Partners</div>
+          <div class="stat-description">Faculty from top universities</div>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-laptop stat-icon"></i>
+          <span class="stat-number">3</span>
+          <div class="stat-label">Educational Resources</div>
+          <div class="stat-description">Interactive tools and content</div>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-university stat-icon"></i>
+          <span class="stat-number">5</span>
+          <div class="stat-label">Partner Universities</div>
+          <div class="stat-description">
+            Harvard, Stanford, MIT, Princeton, Columbia
+          </div>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-rocket stat-icon"></i>
+          <span class="stat-number">5</span>
+          <div class="stat-label">Research Projects</div>
+          <div class="stat-description">Started with mentor guidance</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="footer-content">
+      <div class="footer-main">
+        <div class="footer-section">
+          <h4>The Stellar Gateway</h4>
+          <p>
+            A student-run nonprofit dedicated to democratizing astronomy
+            education and empowering the next generation of space scientists.
+            Together, we're reaching for the stars.
+          </p>
+          <div style="margin-top: 1.5rem">
+            <a href="mailto:contact@stellargateway.org" style="color: #7c3aed; text-decoration: none">
+              <i class="fas fa-envelope"></i> contact@stellargateway.org
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#programs">Programs</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="education.html">Education</a></li>
+            <li><a href="speakers.html">Speakers</a></li>
+            <li><a href="#impact">Impact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Get Involved</h4>
+          <ul class="footer-links">
+            <li><a href="https://forms.fillout.com/t/8BV75hB38gus">Join Our Team</a></li>
+            <li><a href="#mentor">Become a Mentor</a></li>
+            <li><a href="#volunteer">Volunteer</a></li>
+            <li><a href="#donate">Support Us</a></li>
+            <li><a href="#partnership">Partnerships</a></li>
+            <li>
+              <a href="https://discord.gg/your-invite-code">Discord Community</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-cta">
+        <h3>Ready to Explore the Universe?</h3>
+        <p>
+          Join our community of passionate astronomers, researchers, and
+          educators. Whether you're a student, mentor, or astronomy
+          enthusiast, there's a place for you in our mission.
+        </p>
+        <div class="footer-buttons">
+          <a href="https://forms.fillout.com/t/8BV75hB38gus" class="cta-button">
+            <i class="fas fa-rocket"></i>
             Join Our Team
           </a>
-          <a href="#programs" class="cta-secondary">
-            <i class="fas fa-telescope"></i>
-            Explore Programs
+          <a href="https://discord.gg/eTYtsQJY4k" class="cta-secondary">
+            Join Discord
           </a>
         </div>
       </div>
-    </section>
 
-    <!-- Discord Widget -->
-    <div class="discord-widget">
-      <a
-        href="https://discord.gg/eTYtsQJY4k"
-        class="discord-card"
-        target="_blank"
-      >
-        <div class="discord-text">
-          <div class="title">Join Our Discord Community</div>
-          <div class="subtitle">1,247 members online</div>
-        </div>
-        <i
-          class="fas fa-external-link-alt"
-          style="font-size: 0.8rem; opacity: 0.7"
-        ></i>
-      </a>
-    </div>
-
-    <!-- About Section -->
-    <section id="about" class="fade-in">
-      <div class="section-header">
-        <div class="section-badge">Our Mission</div>
-        <h2 class="section-title">Breaking Barriers in Astronomy</h2>
-        <p class="section-description">
-          The Stellar Gateway believes that the wonder of the cosmos should be
-          accessible to all. We're a passionate community of students,
-          researchers, and educators working to democratize astronomy education
-          and create pathways for underrepresented students to pursue careers in
-          space science.
-        </p>
-      </div>
-    </section>
-
-    <!-- Programs Section -->
-    <section id="programs" class="fade-in">
-      <div class="section-header">
-        <div class="section-badge">What We Do</div>
-        <h2 class="section-title">Our Impact Programs</h2>
-        <p class="section-description">
-          Three comprehensive pathways designed to guide students from curiosity
-          to career in astronomy
-        </p>
-      </div>
-
-      <div class="programs-grid">
-        <div class="program-card slide-in-left">
-          <div class="program-header">
-            <i class="fas fa-microscope program-icon"></i>
-            <div>
-              <h3>Research Excellence</h3>
-              <div class="program-meta">
-                <span class="meta-item">
-                  <i class="fas fa-users"></i>
-                  8+ Active Mentors
-                </span>
-                <span class="meta-item">
-                  <i class="fas fa-rocket"></i>
-                  5 Projects Started
-                </span>
-              </div>
-            </div>
-          </div>
-          <p>
-            Student researchers collaborate directly with world-renowned mentors
-            from Harvard, Stanford, MIT, Princeton, and Columbia to conduct
-            cutting-edge astronomical research and publish in peer-reviewed
-            journals.
-          </p>
-
-          <ul class="program-features">
-            <li>One-on-one mentorship with leading astronomers</li>
-            <li>Access to professional-grade research tools</li>
-            <li>Publication opportunities in top journals</li>
-            <li>Conference presentation support</li>
-            <li>Career guidance and networking</li>
-          </ul>
-
-          <a href="research.html" class="program-cta">
-            Learn More <i class="fas fa-arrow-right"></i>
-          </a>
-        </div>
-
-        <div class="program-card slide-in-right">
-          <div class="program-header">
-            <i class="fas fa-globe program-icon"></i>
-            <div>
-              <h3>Educational Innovation</h3>
-              <div class="program-meta">
-                <span class="meta-item">
-                  <i class="fas fa-desktop"></i>
-                  3 Websites Built
-                </span>
-                <span class="meta-item">
-                  <i class="fas fa-code"></i>
-                  Growing Library
-                </span>
-              </div>
-            </div>
-          </div>
-          <p>
-            We develop interactive websites, educational tools, and multimedia
-            content that make complex astronomical concepts accessible and
-            engaging for students worldwide.
-          </p>
-
-          <ul class="program-features">
-            <li>Interactive astronomy simulations</li>
-            <li>Virtual telescope experiences</li>
-            <li>Multilingual educational content</li>
-            <li>Mobile-responsive learning platforms</li>
-            <li>Open-source educational tools</li>
-          </ul>
-
-          <a href="education.html" class="program-cta">
-            Explore Resources <i class="fas fa-arrow-right"></i>
-          </a>
-        </div>
-
-        <div class="program-card slide-in-left">
-          <div class="program-header">
-            <i class="fas fa-microphone program-icon"></i>
-            <div>
-              <h3>Speaker Series</h3>
-              <div class="program-meta">
-                <span class="meta-item">
-                  <i class="fas fa-calendar"></i>
-                  Launching Soon
-                </span>
-                <span class="meta-item">
-                  <i class="fas fa-users"></i>
-                  Planning Events
-                </span>
-              </div>
-            </div>
-          </div>
-          <p>
-            Connect with leading astronomers, astrophysicists, and space
-            industry professionals through our exclusive speaker series,
-            workshops, and networking events.
-          </p>
-
-          <ul class="program-features">
-            <li>Monthly expert presentations</li>
-            <li>Interactive Q&A sessions</li>
-            <li>Career pathway workshops</li>
-            <li>Industry networking events</li>
-            <li>Virtual and in-person options</li>
-          </ul>
-
-          <a href="speakers.html" class="program-cta">
-            View Schedule <i class="fas fa-arrow-right"></i>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Partners Section -->
-    <section class="partners fade-in">
-      <div class="partners-intro">
-        <div class="section-badge">Our Network</div>
-        <h3>Partnering with World-Class Institutions</h3>
+      <div class="footer-bottom">
         <p>
-          Our mentors and collaborators represent the finest minds in astronomy,
-          providing students with unparalleled access to cutting-edge research
-          and career guidance.
+          &copy; 2025 The Stellar Gateway. Democratizing astronomy, one
+          student at a time.
         </p>
       </div>
+    </div>
+  </footer>
 
-      <div class="university-grid">
-        <div class="university-card">
-          <div class="university-logo">HARVARD</div>
-          <div class="university-type">Ivy League</div>
-        </div>
-        <div class="university-card">
-          <div class="university-logo">STANFORD</div>
-          <div class="university-type">Private Research</div>
-        </div>
-        <div class="university-card">
-          <div class="university-logo">MIT</div>
-          <div class="university-type">Tech Institute</div>
-        </div>
-        <div class="university-card">
-          <div class="university-logo">PRINCETON</div>
-          <div class="university-type">Ivy League</div>
-        </div>
-        <div class="university-card">
-          <div class="university-logo">COLUMBIA</div>
-          <div class="university-type">Ivy League</div>
-        </div>
-      </div>
-    </section>
+  <!-- Floating Action Button -->
+  <button class="fab" onclick="scrollToTop()" title="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
 
-    <!-- Impact Stats -->
-    <section id="impact" class="fade-in">
-      <div class="stats-section">
-        <div class="section-header">
-          <div class="section-badge">Our Impact</div>
-          <h2 class="section-title">Building Momentum in Our First Month</h2>
-          <p class="section-description">
-            Early results showing strong engagement and partnership growth as we
-            work to democratize astronomy education
-          </p>
-        </div>
+  <script>
+    // Enhanced star field with different types
+    function createStars() {
+      const starsContainer = document.getElementById("stars");
+      const numStars = 200;
 
-        <div class="stats-grid">
-          <div class="stat-card">
-            <i class="fas fa-users stat-icon"></i>
-            <span class="stat-number">35+</span>
-            <div class="stat-label">Students Engaged</div>
-            <div class="stat-description">
-              Growing community in our first month
-            </div>
-          </div>
-          <div class="stat-card">
-            <i class="fas fa-handshake stat-icon"></i>
-            <span class="stat-number">8</span>
-            <div class="stat-label">Mentor Partners</div>
-            <div class="stat-description">Faculty from top universities</div>
-          </div>
-          <div class="stat-card">
-            <i class="fas fa-laptop stat-icon"></i>
-            <span class="stat-number">3</span>
-            <div class="stat-label">Educational Resources</div>
-            <div class="stat-description">Interactive tools and content</div>
-          </div>
-          <div class="stat-card">
-            <i class="fas fa-university stat-icon"></i>
-            <span class="stat-number">5</span>
-            <div class="stat-label">Partner Universities</div>
-            <div class="stat-description">
-              Harvard, Stanford, MIT, Princeton, Columbia
-            </div>
-          </div>
-          <div class="stat-card">
-            <i class="fas fa-rocket stat-icon"></i>
-            <span class="stat-number">5</span>
-            <div class="stat-label">Research Projects</div>
-            <div class="stat-description">Started with mentor guidance</div>
-          </div>
-          
-        </div>
-      </div>
-    </section>
+      for (let i = 0; i < numStars; i++) {
+        const star = document.createElement("div");
+        star.className = "star";
 
-    <!-- Footer -->
-    <footer id="contact">
-      <div class="footer-content">
-        <div class="footer-main">
-          <div class="footer-section">
-            <h4>The Stellar Gateway</h4>
-            <p>
-              A student-run nonprofit dedicated to democratizing astronomy
-              education and empowering the next generation of space scientists.
-              Together, we're reaching for the stars.
-            </p>
-            <div style="margin-top: 1.5rem">
-              <a
-                href="mailto:contact@stellargateway.org"
-                style="color: #7c3aed; text-decoration: none"
-              >
-                <i class="fas fa-envelope"></i> contact@stellargateway.org
-              </a>
-            </div>
-          </div>
-
-          <div class="footer-section">
-            <h4>Quick Links</h4>
-            <ul class="footer-links">
-              <li><a href="#about">About Us</a></li>
-              <li><a href="#programs">Programs</a></li>
-              <li><a href="research.html">Research</a></li>
-              <li><a href="education.html">Education</a></li>
-              <li><a href="speakers.html">Speakers</a></li>
-              <li><a href="#impact">Impact</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-section">
-            <h4>Get Involved</h4>
-            <ul class="footer-links">
-              <li><a href="#apply">Join Our Team</a></li>
-              <li><a href="#mentor">Become a Mentor</a></li>
-              <li><a href="#volunteer">Volunteer</a></li>
-              <li><a href="#donate">Support Us</a></li>
-              <li><a href="#partnership">Partnerships</a></li>
-              <li>
-                <a href="https://discord.gg/your-invite-code"
-                  >Discord Community</a
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="footer-cta">
-          <h3>Ready to Explore the Universe?</h3>
-          <p>
-            Join our community of passionate astronomers, researchers, and
-            educators. Whether you're a student, mentor, or astronomy
-            enthusiast, there's a place for you in our mission.
-          </p>
-          <div class="footer-buttons">
-            <a href="#apply" class="cta-button">
-              <i class="fas fa-rocket"></i>
-              Join Our Team
-            </a>
-            <a href="https://discord.gg/eTYtsQJY4k" class="cta-secondary">
-              Join Discord
-            </a>
-          </div>
-        </div>
-
-        <div class="footer-bottom">
-          <p>
-            &copy; 2025 The Stellar Gateway. Democratizing astronomy, one
-            student at a time.
-          </p>
-        </div>
-      </div>
-    </footer>
-
-    <!-- Floating Action Button -->
-    <button class="fab" onclick="scrollToTop()" title="Back to top">
-      <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <script>
-      // Enhanced star field with different types
-      function createStars() {
-        const starsContainer = document.getElementById("stars");
-        const numStars = 200;
-
-        for (let i = 0; i < numStars; i++) {
-          const star = document.createElement("div");
-          star.className = "star";
-
-          // Add variety to stars
-          if (Math.random() > 0.8) {
-            star.classList.add("bright");
-          } else if (Math.random() > 0.9) {
-            star.classList.add("distant");
-          }
-
-          star.style.left = Math.random() * 100 + "%";
-          star.style.top = Math.random() * 100 + "%";
-          star.style.width = Math.random() * 3 + 1 + "px";
-          star.style.height = star.style.width;
-          star.style.animationDelay = Math.random() * 4 + "s";
-          star.style.animationDuration = Math.random() * 3 + 3 + "s";
-          starsContainer.appendChild(star);
+        // Add variety to stars
+        if (Math.random() > 0.8) {
+          star.classList.add("bright");
+        } else if (Math.random() > 0.9) {
+          star.classList.add("distant");
         }
+
+        star.style.left = Math.random() * 100 + "%";
+        star.style.top = Math.random() * 100 + "%";
+        star.style.width = Math.random() * 3 + 1 + "px";
+        star.style.height = star.style.width;
+        star.style.animationDelay = Math.random() * 4 + "s";
+        star.style.animationDuration = Math.random() * 3 + 3 + "s";
+        starsContainer.appendChild(star);
       }
+    }
 
-      // Create floating particles
-      function createParticles() {
-        const particlesContainer = document.getElementById("particles");
-        const numParticles = 15;
+    // Create floating particles
+    function createParticles() {
+      const particlesContainer = document.getElementById("particles");
+      const numParticles = 15;
 
-        for (let i = 0; i < numParticles; i++) {
-          const particle = document.createElement("div");
-          particle.className = "particle";
-          particle.style.left = Math.random() * 100 + "%";
-          particle.style.animationDelay = Math.random() * 8 + "s";
-          particle.style.animationDuration = Math.random() * 10 + 8 + "s";
-          particlesContainer.appendChild(particle);
+      for (let i = 0; i < numParticles; i++) {
+        const particle = document.createElement("div");
+        particle.className = "particle";
+        particle.style.left = Math.random() * 100 + "%";
+        particle.style.animationDelay = Math.random() * 8 + "s";
+        particle.style.animationDuration = Math.random() * 10 + 8 + "s";
+        particlesContainer.appendChild(particle);
+      }
+    }
+
+    // Enhanced scroll animations
+    function handleScrollAnimations() {
+      const elements = document.querySelectorAll(
+        ".fade-in, .slide-in-left, .slide-in-right"
+      );
+      const windowHeight = window.innerHeight;
+
+      elements.forEach((element, index) => {
+        const elementTop = element.getBoundingClientRect().top;
+        if (elementTop < windowHeight - 50) {
+          setTimeout(() => {
+            element.classList.add("visible");
+          }, index * 100); // Stagger animations
         }
-      }
+      });
+    }
 
-      // Enhanced scroll animations
-      function handleScrollAnimations() {
-        const elements = document.querySelectorAll(
-          ".fade-in, .slide-in-left, .slide-in-right"
-        );
-        const windowHeight = window.innerHeight;
+    // Counter animation for stats
+    function animateCounters() {
+      const counters = document.querySelectorAll(".stat-number");
+      const speed = 200;
 
-        elements.forEach((element, index) => {
-          const elementTop = element.getBoundingClientRect().top;
-          if (elementTop < windowHeight - 50) {
-            setTimeout(() => {
-              element.classList.add("visible");
-            }, index * 100); // Stagger animations
-          }
-        });
-      }
-
-      // Counter animation for stats
-      function animateCounters() {
-        const counters = document.querySelectorAll(".stat-number");
-        const speed = 200;
-
-        counters.forEach((counter) => {
-          const updateCount = () => {
-            const target = parseInt(
-              counter.getAttribute("data-target") ||
-                counter.textContent.replace(/[^0-9]/g, "")
-            );
-            const count = parseInt(counter.textContent.replace(/[^0-9]/g, ""));
-            const inc = target / speed;
-
-            if (count < target) {
-              counter.textContent =
-                Math.ceil(count + inc) +
-                (counter.textContent.includes("+") ? "+" : "");
-              setTimeout(updateCount, 1);
-            } else {
-              counter.textContent =
-                target + (counter.textContent.includes("+") ? "+" : "");
-            }
-          };
-
-          // Store original value
-          counter.setAttribute(
-            "data-target",
+      counters.forEach((counter) => {
+        const updateCount = () => {
+          const target = parseInt(
+            counter.getAttribute("data-target") ||
             counter.textContent.replace(/[^0-9]/g, "")
           );
+          const count = parseInt(counter.textContent.replace(/[^0-9]/g, ""));
+          const inc = target / speed;
 
-          // Start animation when element is visible
-          const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                updateCount();
-                observer.unobserve(entry.target);
-              }
-            });
-          });
+          if (count < target) {
+            counter.textContent =
+              Math.ceil(count + inc) +
+              (counter.textContent.includes("+") ? "+" : "");
+            setTimeout(updateCount, 1);
+          } else {
+            counter.textContent =
+              target + (counter.textContent.includes("+") ? "+" : "");
+          }
+        };
 
-          observer.observe(counter);
-        });
-      }
+        // Store original value
+        counter.setAttribute(
+          "data-target",
+          counter.textContent.replace(/[^0-9]/g, "")
+        );
 
-      // Mobile menu functionality
-      function setupMobileMenu() {
-        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-        const mobileMenu = document.getElementById("mobileMenu");
-
-        mobileMenuBtn.addEventListener("click", () => {
-          mobileMenu.classList.toggle("active");
-        });
-
-        // Close menu when clicking on links
-        const mobileLinks = document.querySelectorAll(".mobile-menu-links a");
-        mobileLinks.forEach((link) => {
-          link.addEventListener("click", () => {
-            mobileMenu.classList.remove("active");
-          });
-        });
-      }
-
-      // Enhanced smooth scrolling
-      function setupSmoothScrolling() {
-        const links = document.querySelectorAll('a[href^="#"]');
-        links.forEach((link) => {
-          link.addEventListener("click", function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute("href");
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-              const headerHeight =
-                document.querySelector("header").offsetHeight;
-              const targetPosition =
-                targetElement.offsetTop - headerHeight - 20;
-
-              window.scrollTo({
-                top: targetPosition,
-                behavior: "smooth",
-              });
+        // Start animation when element is visible
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              updateCount();
+              observer.unobserve(entry.target);
             }
           });
         });
-      }
 
-      // Header scroll effect and FAB visibility
-      function handleHeaderScroll() {
-        const header = document.getElementById("header");
-        const fab = document.querySelector(".fab");
-        const hero = document.querySelector(".hero");
-        const heroHeight = hero.offsetHeight;
+        observer.observe(counter);
+      });
+    }
 
-        if (window.scrollY > 50) {
-          header.classList.add("scrolled");
-        } else {
-          header.classList.remove("scrolled");
-        }
+    // Mobile menu functionality
+    function setupMobileMenu() {
+      const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
 
-        // Show FAB after hero section
-        if (window.scrollY > heroHeight - 200) {
-          fab.classList.add("visible");
-        } else {
-          fab.classList.remove("visible");
-        }
-      }
-
-      // Scroll to top function
-      function scrollToTop() {
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        });
-      }
-
-      // Loading animation
-      function hideLoadingOverlay() {
-        const overlay = document.getElementById("loadingOverlay");
-        setTimeout(() => {
-          overlay.style.opacity = "0";
-          setTimeout(() => {
-            overlay.style.display = "none";
-          }, 500);
-        }, 1000);
-      }
-
-      // Enhanced card interactions
-      function setupCardInteractions() {
-        const programCards = document.querySelectorAll(".program-card");
-        programCards.forEach((card) => {
-          card.addEventListener("mouseenter", function () {
-            this.style.transform = "translateY(-15px) scale(1.02)";
-          });
-
-          card.addEventListener("mouseleave", function () {
-            this.style.transform = "translateY(-15px) scale(1)";
-          });
-        });
-
-        const statCards = document.querySelectorAll(".stat-card");
-        statCards.forEach((card) => {
-          card.addEventListener("mouseenter", function () {
-            this.style.transform = "translateY(-10px) rotateY(5deg)";
-          });
-
-          card.addEventListener("mouseleave", function () {
-            this.style.transform = "translateY(-10px) rotateY(0deg)";
-          });
-        });
-      }
-
-      // Initialize everything
-      document.addEventListener("DOMContentLoaded", function () {
-        hideLoadingOverlay();
-        createStars();
-        createParticles();
-        setupSmoothScrolling();
-        setupMobileMenu();
-        setupCardInteractions();
-        handleScrollAnimations();
-        animateCounters();
-
-        // Add scroll event listeners
-        window.addEventListener("scroll", function () {
-          handleScrollAnimations();
-          handleHeaderScroll();
-        });
-
-        // Trigger initial animation check
-        setTimeout(handleScrollAnimations, 200);
+      mobileMenuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("active");
       });
 
-      // Add some easter eggs for astronomy enthusiasts
-      document.addEventListener("keydown", function (e) {
-        if (e.ctrlKey && e.shiftKey && e.key === "S") {
-          // Secret star shower effect
-          for (let i = 0; i < 50; i++) {
-            setTimeout(() => {
-              const star = document.createElement("div");
-              star.style.position = "fixed";
-              star.style.left = Math.random() * 100 + "vw";
-              star.style.top = "-10px";
-              star.style.width = "3px";
-              star.style.height = "3px";
-              star.style.background = "#4f46e5";
-              star.style.borderRadius = "50%";
-              star.style.pointerEvents = "none";
-              star.style.zIndex = "1001";
-              star.style.animation = "fall 3s linear forwards";
-              document.body.appendChild(star);
+      // Close menu when clicking on links
+      const mobileLinks = document.querySelectorAll(".mobile-menu-links a");
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.remove("active");
+        });
+      });
+    }
 
-              setTimeout(() => {
-                star.remove();
-              }, 3000);
-            }, i * 100);
+    // Enhanced smooth scrolling
+    function setupSmoothScrolling() {
+      const links = document.querySelectorAll('a[href^="#"]');
+      links.forEach((link) => {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute("href");
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            const headerHeight =
+              document.querySelector("header").offsetHeight;
+            const targetPosition =
+              targetElement.offsetTop - headerHeight - 20;
+
+            window.scrollTo({
+              top: targetPosition,
+              behavior: "smooth",
+            });
           }
-        }
+        });
+      });
+    }
+
+    // Header scroll effect and FAB visibility
+    function handleHeaderScroll() {
+      const header = document.getElementById("header");
+      const fab = document.querySelector(".fab");
+      const hero = document.querySelector(".hero");
+      const heroHeight = hero.offsetHeight;
+
+      if (window.scrollY > 50) {
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+      }
+
+      // Show FAB after hero section
+      if (window.scrollY > heroHeight - 200) {
+        fab.classList.add("visible");
+      } else {
+        fab.classList.remove("visible");
+      }
+    }
+
+    // Scroll to top function
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+
+    // Loading animation
+    function hideLoadingOverlay() {
+      const overlay = document.getElementById("loadingOverlay");
+      setTimeout(() => {
+        overlay.style.opacity = "0";
+        setTimeout(() => {
+          overlay.style.display = "none";
+        }, 500);
+      }, 1000);
+    }
+
+    // Enhanced card interactions
+    function setupCardInteractions() {
+      const programCards = document.querySelectorAll(".program-card");
+      programCards.forEach((card) => {
+        card.addEventListener("mouseenter", function () {
+          this.style.transform = "translateY(-15px) scale(1.02)";
+        });
+
+        card.addEventListener("mouseleave", function () {
+          this.style.transform = "translateY(-15px) scale(1)";
+        });
       });
 
-      // Add CSS for falling stars effect
-      const style = document.createElement("style");
-      style.textContent = `
+      const statCards = document.querySelectorAll(".stat-card");
+      statCards.forEach((card) => {
+        card.addEventListener("mouseenter", function () {
+          this.style.transform = "translateY(-10px) rotateY(5deg)";
+        });
+
+        card.addEventListener("mouseleave", function () {
+          this.style.transform = "translateY(-10px) rotateY(0deg)";
+        });
+      });
+    }
+
+    // Initialize everything
+    document.addEventListener("DOMContentLoaded", function () {
+      hideLoadingOverlay();
+      createStars();
+      createParticles();
+      setupSmoothScrolling();
+      setupMobileMenu();
+      setupCardInteractions();
+      handleScrollAnimations();
+      animateCounters();
+
+      // Add scroll event listeners
+      window.addEventListener("scroll", function () {
+        handleScrollAnimations();
+        handleHeaderScroll();
+      });
+
+      // Trigger initial animation check
+      setTimeout(handleScrollAnimations, 200);
+    });
+
+    // Add some easter eggs for astronomy enthusiasts
+    document.addEventListener("keydown", function (e) {
+      if (e.ctrlKey && e.shiftKey && e.key === "S") {
+        // Secret star shower effect
+        for (let i = 0; i < 50; i++) {
+          setTimeout(() => {
+            const star = document.createElement("div");
+            star.style.position = "fixed";
+            star.style.left = Math.random() * 100 + "vw";
+            star.style.top = "-10px";
+            star.style.width = "3px";
+            star.style.height = "3px";
+            star.style.background = "#4f46e5";
+            star.style.borderRadius = "50%";
+            star.style.pointerEvents = "none";
+            star.style.zIndex = "1001";
+            star.style.animation = "fall 3s linear forwards";
+            document.body.appendChild(star);
+
+            setTimeout(() => {
+              star.remove();
+            }, 3000);
+          }, i * 100);
+        }
+      }
+    });
+
+    // Add CSS for falling stars effect
+    const style = document.createElement("style");
+    style.textContent = `
             @keyframes fall {
                 to {
                     transform: translateY(100vh);
@@ -681,7 +665,8 @@
                 }
             }
         `;
-      document.head.appendChild(style);
-    </script>
-  </body>
+    document.head.appendChild(style);
+  </script>
+</body>
+
 </html>
