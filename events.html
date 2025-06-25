@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Events & Hackathons - The Stellar Gateway</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link href="styles.css" rel="stylesheet" />
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-QB6EKEKJQ3"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-QB6EKEKJQ3");
+    </script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        background: #0a0a0f;
+        color: #ffffff;
+        overflow-x: hidden;
+        line-height: 1.6;
+      }
+
+      /* Enhanced Star Field Background */
+      .stars {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -2;
+      }
+
+      .star {
+        position: absolute;
+        background: white;
+        border-radius: 50%;
+        animation: twinkle 4s infinite ease-in-out;
+      }
+
+      .star.bright {
+        background: #4f46e5;
+        box-shadow: 0 0 6px #4f46e5;
+      }
+
+      .star.distant {
+        background: #7c3aed;
+        animation: pulse 6s infinite ease-in-out;
+      }
+
+      @keyframes twinkle {
+        0%,
+        100% {
+          opacity: 0.3;
+          transform: scale(0.8);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.2);
+        }
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.2;
+        }
+        50% {
+          opacity: 0.8;
+        }
+      }
+
+      /* Enhanced Nebula Effect */
+      .nebula {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+            ellipse at 20% 50%,
+            rgba(120, 119, 198, 0.15) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            ellipse at 80% 20%,
+            rgba(255, 119, 198, 0.12) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            ellipse at 40% 80%,
+            rgba(119, 198, 255, 0.1) 0%,
+            transparent 50%
+          );
+        pointer-events: none;
+        z-index: -1;
+        animation: nebulaDrift 30s ease-in-out infinite;
+      }
+
+      @keyframes nebulaDrift {
+        0%,
+        100% {
+          transform: translate(0, 0) rotate(0deg);
+        }
+        33% {
+          transform: translate(10px, -20px) rotate(1deg);
+        }
+        66% {
+          transform: translate(-10px, 10px) rotate(-1deg);
+        }
+      }
+
+      /* Header Styles */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(10, 10, 15, 0.95);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(79, 70, 229, 0.2);
+        z-index: 1000;
+        transition: all 0.3s ease;
+      }
+
+      nav {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #ffffff;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .logo i {
+        color: #4f46e5;
+        font-size: 1.75rem;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      .nav-links a {
+        color: #a1a1aa;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .nav-links a:hover {
+        color: #ffffff;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #4f46e5, #7c3aed);
+        transition: width 0.3s ease;
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 25px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(79, 70, 229, 0.3);
+      }
+
+      /* Page Hero */
+      .page-hero {
+        padding: 120px 2rem 80px;
+        text-align: center;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .page-hero h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        background: linear-gradient(135deg, #ffffff 0%, #a78bfa 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .page-hero p {
+        font-size: 1.25rem;
+        color: #a1a1aa;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      /* Section Styles */
+      .section-header {
+        text-align: center;
+        margin-bottom: 4rem;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0 2rem;
+      }
+
+      .section-badge {
+        display: inline-block;
+        background: rgba(79, 70, 229, 0.2);
+        color: #a78bfa;
+        padding: 0.5rem 1.5rem;
+        border-radius: 30px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 1.5rem;
+        border: 1px solid rgba(79, 70, 229, 0.3);
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: #ffffff;
+      }
+
+      .section-description {
+        font-size: 1.125rem;
+        color: #a1a1aa;
+        line-height: 1.8;
+      }
+
+      /* Events Container */
+      .events-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem 5rem;
+      }
+
+      .events-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 2rem;
+        margin-bottom: 4rem;
+      }
+
+      .event-card {
+        background: linear-gradient(
+          135deg,
+          rgba(79, 70, 229, 0.1) 0%,
+          rgba(124, 58, 237, 0.05) 100%
+        );
+        border: 1px solid rgba(79, 70, 229, 0.2);
+        border-radius: 20px;
+        padding: 2rem;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .event-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #4f46e5, #7c3aed);
+      }
+
+      .event-card.featured::before {
+        height: 6px;
+        background: linear-gradient(90deg, #fbbf24, #f59e0b);
+      }
+
+      .event-card.upcoming::before {
+        background: linear-gradient(90deg, #10b981, #059669);
+      }
+
+      .event-card:hover {
+        transform: translateY(-10px);
+        border-color: rgba(79, 70, 229, 0.4);
+        box-shadow: 0 25px 50px rgba(79, 70, 229, 0.2);
+      }
+
+      .event-status {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 1.5rem;
+      }
+
+      .event-status.completed {
+        background: rgba(79, 70, 229, 0.2);
+        color: #a78bfa;
+        border: 1px solid rgba(79, 70, 229, 0.3);
+      }
+
+      .event-status.upcoming {
+        background: rgba(16, 185, 129, 0.2);
+        color: #10b981;
+        border: 1px solid rgba(16, 185, 129, 0.3);
+      }
+
+      .event-title {
+        font-size: 1.5rem;
+        color: #ffffff;
+        margin-bottom: 1rem;
+        font-weight: 600;
+      }
+
+      .event-description {
+        color: #a1a1aa;
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+      }
+
+      .event-meta {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .meta-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.9rem;
+        color: #a1a1aa;
+      }
+
+      .meta-item i {
+        color: #4f46e5;
+        width: 16px;
+        text-align: center;
+      }
+
+      .event-highlights {
+        margin-bottom: 1.5rem;
+      }
+
+      .event-highlights h4 {
+        color: #ffffff;
+        font-size: 1rem;
+        margin-bottom: 0.75rem;
+        font-weight: 600;
+      }
+
+      .highlights-list {
+        list-style: none;
+      }
+
+      .highlights-list li {
+        color: #a1a1aa;
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+        padding-left: 1.5rem;
+        position: relative;
+      }
+
+      .highlights-list li::before {
+        content: "✨";
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+
+      .event-actions {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .event-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.25rem;
+        background: rgba(79, 70, 229, 0.1);
+        color: #a78bfa;
+        text-decoration: none;
+        border-radius: 12px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        border: 1px solid rgba(79, 70, 229, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      .event-link:hover {
+        background: rgba(79, 70, 229, 0.2);
+        border-color: rgba(79, 70, 229, 0.5);
+        transform: translateY(-2px);
+      }
+
+      .event-link.primary {
+        background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+        color: white;
+        border: none;
+      }
+
+      .event-link.primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 35px rgba(79, 70, 229, 0.4);
+      }
+
+      /* Upcoming Events Section */
+      .upcoming-events {
+        background: linear-gradient(
+          135deg,
+          rgba(16, 185, 129, 0.05) 0%,
+          rgba(5, 150, 105, 0.05) 100%
+        );
+        border: 1px solid rgba(16, 185, 129, 0.2);
+        border-radius: 20px;
+        padding: 3rem 2rem;
+        margin-bottom: 4rem;
+        text-align: center;
+      }
+
+      .upcoming-events h3 {
+        font-size: 2rem;
+        color: #ffffff;
+        margin-bottom: 1rem;
+        font-weight: 600;
+      }
+
+      .upcoming-events p {
+        color: #a1a1aa;
+        margin-bottom: 2rem;
+        font-size: 1.1rem;
+      }
+
+      /* Newsletter Signup */
+      .newsletter-signup {
+        background: linear-gradient(
+          135deg,
+          rgba(79, 70, 229, 0.1) 0%,
+          rgba(124, 58, 237, 0.1) 100%
+        );
+        border: 1px solid rgba(79, 70, 229, 0.2);
+        border-radius: 20px;
+        padding: 3rem 2rem;
+        text-align: center;
+      }
+
+      .newsletter-signup h3 {
+        font-size: 2rem;
+        color: #ffffff;
+        margin-bottom: 1rem;
+        font-weight: 600;
+      }
+
+      .newsletter-signup p {
+        color: #a1a1aa;
+        margin-bottom: 2rem;
+        font-size: 1.1rem;
+      }
+
+      .cta-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1rem 2rem;
+        background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+        color: white;
+        text-decoration: none;
+        border-radius: 12px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        margin: 0.5rem;
+      }
+
+      .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 35px rgba(79, 70, 229, 0.4);
+      }
+
+      .cta-secondary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1rem 2rem;
+        background: rgba(79, 70, 229, 0.1);
+        color: #a78bfa;
+        text-decoration: none;
+        border-radius: 12px;
+        font-weight: 600;
+        border: 1px solid rgba(79, 70, 229, 0.3);
+        transition: all 0.3s ease;
+        margin: 0.5rem;
+      }
+
+      .cta-secondary:hover {
+        background: rgba(79, 70, 229, 0.2);
+        transform: translateY(-3px);
+      }
+
+      /* Footer */
+      footer {
+        background: linear-gradient(
+          135deg,
+          rgba(79, 70, 229, 0.1) 0%,
+          rgba(124, 58, 237, 0.1) 100%
+        );
+        border-top: 1px solid rgba(79, 70, 229, 0.2);
+        padding: 3rem 0 1rem;
+        margin-top: 5rem;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        text-align: center;
+      }
+
+      .back-to-home {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1rem 2rem;
+        background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+        color: white;
+        text-decoration: none;
+        border-radius: 12px;
+        font-weight: 600;
+        margin-bottom: 2rem;
+        transition: all 0.3s ease;
+      }
+
+      .back-to-home:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 35px rgba(79, 70, 229, 0.4);
+      }
+
+      .footer-bottom {
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(79, 70, 229, 0.2);
+        color: #a1a1aa;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .page-hero h1 {
+          font-size: 2rem;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .events-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+
+        .event-meta {
+          grid-template-columns: 1fr;
+          gap: 0.5rem;
+        }
+
+        .event-actions {
+          flex-direction: column;
+        }
+
+        .event-link {
+          justify-content: center;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .events-container {
+          padding: 0 1rem 3rem;
+        }
+
+        .event-card {
+          padding: 1.5rem;
+        }
+
+        .upcoming-events,
+        .newsletter-signup {
+          padding: 2rem 1rem;
+        }
+
+        nav {
+          padding: 1rem;
+        }
+      }
+
+      /* Animation Classes */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Animated Background -->
+    <div class="stars" id="stars"></div>
+    <div class="nebula"></div>
+
+    <!-- Header -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+      <h1>Events & Hackathons</h1>
+      <p>
+        Join our community-driven events, hackathons, and workshops designed to
+        inspire the next generation of space innovators.
+      </p>
+    </section>
+
+    <!-- Events Section -->
+    <div class="events-container">
+      <!-- Featured Event -->
+      <div class="section-header">
+        <div class="section-badge">Featured Event</div>
+        <h2 class="section-title">Our Signature Events</h2>
+      </div>
+
+      <div class="events-grid">
+        <!-- Stellar Gateway Quest -->
+        <div class="event-card featured fade-in">
+          <div class="event-status completed">Completed</div>
+          <h3 class="event-title">🏆 Stellar Gateway Quest 2025</h3>
+          <p class="event-description">
+            Our flagship 48-hour virtual hackathon that brought together 385
+            participants from around the globe to develop innovative solutions
+            for space exploration, astronomy education, and satellite
+            technology.
+          </p>
+
+          <div class="event-meta">
+            <div class="meta-item">
+              <i class="fas fa-calendar"></i>
+              <span>June 2025</span>
+            </div>
+            <div class="meta-item">
+              <i class="fas fa-users"></i>
+              <span>385 Participants</span>
+            </div>
+            <div class="meta-item">
+              <i class="fas fa-dollar-sign"></i>
+              <span>$55K Prize Pool</span>
+            </div>
+            <div class="meta-item">
+              <i class="fas fa-trophy"></i>
+              <span>50+ Projects</span>
+            </div>
+          </div>
+
+          <div class="event-highlights">
+            <h4>🌟 Event Highlights</h4>
+            <ul class="highlights-list">
+              <li>Global participation from 25+ countries</li>
+              <li>Multiple prize categories including NASA Special Awards</li>
+              <li>Industry mentorship from leading space companies</li>
+              <li>Real-world space technology challenges</li>
+              <li>48 hours of non-stop innovation</li>
+            </ul>
+          </div>
+
+          <div class="event-actions">
+            <a
+              href="https://stellar-gateway-quest.devpost.com/"
+              class="event-link primary"
+              target="_blank"
+            >
+              <i class="fas fa-external-link-alt"></i>
+              View Results
+            </a>
+            <a href="projects.html" class="event-link">
+              <i class="fas fa-trophy"></i>
+              Winning Projects
+            </a>
+          </div>
+        </div>
+
+        <!-- Workshop Series -->
+        <div class="event-card fade-in">
+          <div class="event-status completed">Ongoing</div>
+          <h3 class="event-title">🔬 Monthly Research Workshops</h3>
+          <p class="event-description">
+            Interactive workshops where students learn advanced astronomy
+            research techniques, data analysis methods, and get hands-on
+            experience with professional research tools.
+          </p>
+
+          <div class="event-meta">
+            <div class="meta-item">
+              <i class="fas fa-calendar"></i>
+              <span>Monthly</span>
+            </div>
+            <div class="meta-item">
+              <i class="fas fa-users"></i>
+              <span>50+ Attendees</span>
+            </div>
+            <div class="meta-item">
+              <i class="fas fa-clock"></i>
+              <span>2 Hours</span>
+            </div>
+            <div class="meta-item">
+              <i class="fas fa-desktop"></i>
+              <span>Virtual</span>
+            </div>
+          </div>
+
+          <div class="event-highlights">
+            <h4>📚 Workshop Topics</h4>
+            <ul class="highlights-list">
+              <li>Exoplanet detection using machine learning</li>
+              <li>Solar system dynamics simulation</li>
+              <li>Astronomical image processing</li>
+              <li>Radio astronomy data analysis</li>
+              <li>Research paper writing skills</li>
+            </ul>
+          </div>
+
+          <div class="event-actions">
+            <a
+              href="https://forms.fillout.com/t/8BV75hB38gus"
+              class="event-link primary"
+            >
+              <i class="fas fa-calendar-plus"></i>
+              Register
+            </a>
+            <a href="#newsletter" class="event-link">
+              <i class="fas fa-bell"></i>
+              Get Notified
+            </a>
+          </div>
+        </div>
+
+        <!-- Speaker Series -->
+        <div class="event-card fade-in">
+          <div class="event-status upcoming">Launching Soon</div>
+          <h3 class="event-title">🎤 Expert Speaker Series</h3>
+          <p class="event-description">
+            Monthly presentations by leading astronomers, astrophysicists, and
+            space industry professionals, featuring interactive Q&A sessions and
+            networking opportunities.
+          </p>
+
+          <div class="event-meta">
+            <div class="meta-item">
+              <i class="fas fa-calendar"></i>
+              <span>Q1 2025</span>
+            </div>
+            <div class="meta-item">
+              <i class="fas fa-users"></i>
+              <span>100+ Expected</span>
+            </div>
+            <div class="meta-item">
+              <i class="fas fa-clock"></i>
+              <span>90 Minutes</span>
+            </div>
+            <div class="meta-item">
+              <i class="fas fa-globe"></i>
+              <span>Hybrid Event</span>
+            </div>
+          </div>
+
+          <div class="event-highlights">
+            <h4>🌟 Featured Speakers</h4>
+            <ul class="highlights-list">
+              <li>Harvard-Smithsonian Center for Astrophysics researchers</li>
+              <li>MIT Kavli Institute scientists</li>
+              <li>NASA mission specialists</li>
+              <li>SpaceX and Blue Origin engineers</li>
+              <li>Leading exoplanet discovery teams</li>
+            </ul>
+          </div>
+
+          <div class="event-actions">
+            <a href="speakers.html" class="event-link primary">
+              <i class="fas fa-info-circle"></i>
+              Learn More
+            </a>
+            <a
+              href="https://forms.fillout.com/t/8BV75hB38gus"
+              class="event-link"
+            >
+              <i class="fas fa-bell"></i>
+              Get Updates
+            </a>
+          </div>
+        </div>
+
+        <!-- Community Coding Sessions -->
+        <div class="event-card fade-in">
+          <div class="event-status completed">Weekly</div>
+          <h3 class="event-title">💻 Community Coding Sessions</h3>
+          <p class="event-description">
+            Collaborative coding sessions where community members work together
+            on open-source astronomy projects, educational tools, and research
+            software development.
+          </p>
+
+          <div class="event-meta">
+            <div class="meta-item">
+              <i class="fas fa-calendar"></i>
+              <span>Every Saturday</span>
+            </div>
+            <div class="meta-item">
+              <i class="fas fa-users"></i>
+              <span>20-30 Coders</span>
+            </div>
+            <div class="meta-item">
+              <i class="fas fa-clock"></i>
+              <span>3 Hours</span>
+            </div>
+            <div class="meta-item">
+              <i class="fas fa-desktop"></i>
+              <span>Discord Voice</span>
+            </div>
+          </div>
+
+          <div class="event-highlights">
+            <h4>🔧 Current Projects</h4>
+            <ul class="highlights-list">
+              <li>Telescope control software development</li>
+              <li>Astronomy education game creation</li>
+              <li>Data visualization tools for research</li>
+              <li>Mobile apps for stargazing</li>
+              <li>Website improvements and new features</li>
+            </ul>
+          </div>
+
+          <div class="event-actions">
+            <a
+              href="https://discord.gg/eTYtsQJY4k"
+              class="event-link primary"
+              target="_blank"
+            >
+              <i class="fas fa-comments"></i>
+              Join Discord
+            </a>
+            <a href="projects.html" class="event-link">
+              <i class="fas fa-code"></i>
+              View Projects
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Upcoming Events Alert -->
+      <div class="upcoming-events fade-in">
+        <h3>🚀 Next Major Event Coming Soon!</h3>
+        <p>
+          We're planning our next big hackathon for Spring 2025. Stay tuned for
+          announcements about registration, themes, and an even bigger prize
+          pool!
+        </p>
+        <a href="https://forms.fillout.com/t/8BV75hB38gus" class="cta-button">
+          <i class="fas fa-rocket"></i>
+          Be First to Know
+        </a>
+        <a
+          href="https://discord.gg/eTYtsQJY4k"
+          class="cta-secondary"
+          target="_blank"
+        >
+          <i class="fas fa-comments"></i>
+          Join Community
+        </a>
+      </div>
+
+      <!-- Newsletter Signup -->
+      <div class="newsletter-signup fade-in" id="newsletter">
+        <h3>📧 Stay Connected</h3>
+        <p>
+          Get notified about upcoming events, workshop announcements, speaker
+          reveals, and exclusive opportunities for our community members.
+        </p>
+        <a href="https://forms.fillout.com/t/8BV75hB38gus" class="cta-button">
+          <i class="fas fa-envelope"></i>
+          Subscribe to Updates
+        </a>
+        <a
+          href="https://discord.gg/eTYtsQJY4k"
+          class="cta-secondary"
+          target="_blank"
+        >
+          <i class="fas fa-users"></i>
+          Join Discord Community
+        </a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+    <script>
+      // Create star field
+      function createStars() {
+        const starsContainer = document.getElementById("stars");
+        const numStars = 150;
+
+        for (let i = 0; i < numStars; i++) {
+          const star = document.createElement("div");
+          star.className = "star";
+
+          if (Math.random() > 0.8) {
+            star.classList.add("bright");
+          } else if (Math.random() > 0.9) {
+            star.classList.add("distant");
+          }
+
+          star.style.left = Math.random() * 100 + "%";
+          star.style.top = Math.random() * 100 + "%";
+          star.style.width = Math.random() * 3 + 1 + "px";
+          star.style.height = star.style.width;
+          star.style.animationDelay = Math.random() * 4 + "s";
+          star.style.animationDuration = Math.random() * 3 + 3 + "s";
+          starsContainer.appendChild(star);
+        }
+      }
+
+      // Scroll animations
+      function handleScrollAnimations() {
+        const elements = document.querySelectorAll(".fade-in");
+        const windowHeight = window.innerHeight;
+
+        elements.forEach((element, index) => {
+          const elementTop = element.getBoundingClientRect().top;
+          if (elementTop < windowHeight - 50) {
+            setTimeout(() => {
+              element.classList.add("visible");
+            }, index * 100);
+          }
+        });
+      }
+
+      // Initialize
+      document.addEventListener("DOMContentLoaded", function () {
+        createStars();
+        handleScrollAnimations();
+
+        window.addEventListener("scroll", handleScrollAnimations);
+        setTimeout(handleScrollAnimations, 200);
+      });
+    </script>
+    <script src="components/common.js"></script>
+  </body>
+</html>

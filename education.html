@@ -8,6 +8,22 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
       rel="stylesheet"
     />
+    <link href="styles.css" rel="stylesheet" />
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-QB6EKEKJQ3"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-QB6EKEKJQ3");
+    </script>
     <style>
       * {
         margin: 0;
@@ -712,45 +728,11 @@
   </head>
   <body>
     <!-- Star Field Background -->
-    <div class="stars"></div>
+    <div class="stars" id="stars"></div>
     <div class="nebula"></div>
 
     <!-- Header -->
-    <header>
-      <nav>
-        <a href="index.html" class="logo">
-          <i class="fas fa-star"></i>
-          The Stellar Gateway
-        </a>
-        <ul class="nav-links">
-          <li><a href="index.html#about">About</a></li>
-          <li><a href="index.html#programs">Programs</a></li>
-          <li><a href="research.html">Research</a></li>
-          <li><a href="education.html" class="active">Education</a></li>
-          <li><a href="speakers.html">Speakers</a></li>
-          <li><a href="index.html#impact">Impact</a></li>
-          <li><a href="index.html#contact">Contact</a></li>
-        </ul>
-        <a href="index.html#apply" class="btn-primary">Apply Now</a>
-        <div class="mobile-menu-btn" id="mobileMenuBtn">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </nav>
-      <div class="mobile-menu" id="mobileMenu">
-        <ul class="mobile-menu-links">
-          <li><a href="index.html#about">About</a></li>
-          <li><a href="index.html#programs">Programs</a></li>
-          <li><a href="research.html">Research</a></li>
-          <li><a href="education.html">Education</a></li>
-          <li><a href="speakers.html">Speakers</a></li>
-          <li><a href="index.html#impact">Impact</a></li>
-          <li><a href="index.html#contact">Contact</a></li>
-          <li><a href="index.html#apply">Apply Now</a></li>
-        </ul>
-      </div>
-    </header>
+    <div id="navbar-placeholder"></div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -1068,55 +1050,12 @@
     </main>
 
     <!-- Footer -->
-    <footer>
-      <div class="footer-content">
-        <div class="footer-section">
-          <h3>The Stellar Gateway</h3>
-          <p>
-            Democratizing astronomy education and opening pathways to the cosmos
-            for underserved communities worldwide.
-          </p>
-        </div>
-        <div class="footer-section">
-          <h3>Programs</h3>
-          <ul class="footer-links">
-            <li><a href="#programs">Stellar Explorers</a></li>
-            <li><a href="#programs">Cosmic Scholars</a></li>
-            <li><a href="#programs">Future Astronomers</a></li>
-            <li><a href="#programs">Educator Workshops</a></li>
-          </ul>
-        </div>
-        <div class="footer-section">
-          <h3>Resources</h3>
-          <ul class="footer-links">
-            <li><a href="#resources">Digital Library</a></li>
-            <li><a href="#resources">Software Tools</a></li>
-            <li><a href="#resources">Video Lectures</a></li>
-            <li><a href="#resources">Study Groups</a></li>
-          </ul>
-        </div>
-        <div class="footer-section">
-          <h3>Connect</h3>
-          <ul class="footer-links">
-            <li><a href="#">Contact Us</a></li>
-            <li><a href="#">Newsletter</a></li>
-            <li><a href="#">Social Media</a></li>
-            <li><a href="#">Support</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>
-          &copy; 2024 The Stellar Gateway. Building the future of astronomy
-          education.
-        </p>
-      </div>
-    </footer>
+    <div id="footer-placeholder"></div>
 
     <script>
       // Create star field effect
       function createStars() {
-        const starsContainer = document.querySelector(".stars");
+        const starsContainer = document.getElementById("stars");
         const starCount = 150;
 
         for (let i = 0; i < starCount; i++) {
@@ -1158,30 +1097,9 @@
         });
       });
 
-      // Mobile menu functionality
-      function setupMobileMenu() {
-        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-        const mobileMenu = document.getElementById("mobileMenu");
-
-        if (mobileMenuBtn && mobileMenu) {
-          mobileMenuBtn.addEventListener("click", () => {
-            mobileMenu.classList.toggle("active");
-          });
-
-          // Close menu when clicking on links
-          const mobileLinks = document.querySelectorAll(".mobile-menu-links a");
-          mobileLinks.forEach((link) => {
-            link.addEventListener("click", () => {
-              mobileMenu.classList.remove("active");
-            });
-          });
-        }
-      }
-
       // Initialize effects when page loads
       document.addEventListener("DOMContentLoaded", function () {
         createStars();
-        setupMobileMenu();
 
         // Add scroll effect to cards
         const observerOptions = {
@@ -1209,5 +1127,6 @@
           });
       });
     </script>
+    <script src="components/common.js"></script>
   </body>
 </html>
