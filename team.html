@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Team - The Stellar Gateway</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link href="styles.css" rel="stylesheet" />
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-QB6EKEKJQ3"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-QB6EKEKJQ3");
+    </script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        background: #0a0a0f;
+        color: #ffffff;
+        overflow-x: hidden;
+        line-height: 1.6;
+      }
+
+      /* Star Field Background */
+      .stars {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -2;
+      }
+
+      .star {
+        position: absolute;
+        background: white;
+        border-radius: 50%;
+        animation: twinkle 4s infinite ease-in-out;
+      }
+
+      .star.bright {
+        background: #4f46e5;
+        box-shadow: 0 0 6px #4f46e5;
+      }
+
+      @keyframes twinkle {
+        0%,
+        100% {
+          opacity: 0.3;
+          transform: scale(0.8);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.2);
+        }
+      }
+
+      /* Nebula Effect */
+      .nebula {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          ellipse at 60% 30%,
+          rgba(168, 85, 247, 0.08) 0%,
+          transparent 40%
+        );
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      /* Header */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        padding: 1rem 2rem;
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(10, 10, 15, 0.9);
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .logo {
+        font-size: 1.6rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #4f46e5, #7c3aed, #ec4899);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+      }
+
+      .logo i {
+        font-size: 1.8rem;
+        color: #4f46e5;
+        animation: rotate 4s linear infinite;
+      }
+
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2.5rem;
+        list-style: none;
+        align-items: center;
+      }
+
+      .nav-links a {
+        color: #ffffff;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        position: relative;
+        font-weight: 500;
+        padding: 0.5rem 0;
+      }
+
+      .nav-links a:hover {
+        color: #7c3aed;
+      }
+
+      .nav-links a.active {
+        color: #7c3aed;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(45deg, #4f46e5, #7c3aed);
+        transition: width 0.3s ease;
+      }
+
+      .nav-links a:hover::after,
+      .nav-links a.active::after {
+        width: 100%;
+      }
+
+      .btn-primary {
+        padding: 0.6rem 1.5rem;
+        background: linear-gradient(135deg, #4f46e5, #7c3aed);
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
+      }
+
+      /* Mobile Menu */
+      .mobile-menu-btn {
+        display: none;
+        flex-direction: column;
+        gap: 4px;
+        cursor: pointer;
+        padding: 8px;
+      }
+
+      .mobile-menu-btn span {
+        width: 25px;
+        height: 3px;
+        background: #ffffff;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+      }
+
+      .mobile-menu {
+        position: fixed;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(10, 10, 15, 0.98);
+        backdrop-filter: blur(20px);
+        padding: 2rem;
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 999;
+      }
+
+      .mobile-menu.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .mobile-menu-links {
+        list-style: none;
+        text-align: center;
+      }
+
+      .mobile-menu-links li {
+        margin-bottom: 1.5rem;
+      }
+
+      .mobile-menu-links a {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 1.2rem;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      .mobile-menu-links a:hover {
+        color: #7c3aed;
+      }
+
+      /* Hero Section */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+        padding: 8rem 2rem 4rem;
+        background: radial-gradient(
+          ellipse at center,
+          rgba(79, 70, 229, 0.1) 0%,
+          transparent 70%
+        );
+      }
+
+      .hero-content {
+        max-width: 900px;
+      }
+
+      .hero-badge {
+        display: inline-block;
+        padding: 0.5rem 1.5rem;
+        background: rgba(79, 70, 229, 0.1);
+        border: 1px solid rgba(79, 70, 229, 0.3);
+        border-radius: 50px;
+        color: #a78bfa;
+        font-size: 0.9rem;
+        font-weight: 500;
+        margin-bottom: 2rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(3rem, 6vw, 5rem);
+        font-weight: 900;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(135deg, #4f46e5, #7c3aed, #ec4899);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        line-height: 1.1;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 3rem;
+        opacity: 0.8;
+        line-height: 1.7;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* Main Content */
+      .main-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 6rem 2rem;
+      }
+
+      .section {
+        margin-bottom: 6rem;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
+        background: linear-gradient(135deg, #4f46e5, #7c3aed);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .section-description {
+        font-size: 1.1rem;
+        opacity: 0.8;
+        line-height: 1.7;
+        margin-bottom: 3rem;
+      }
+
+      /* Team Cards */
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 2.5rem;
+        margin-bottom: 4rem;
+      }
+
+      .team-card {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 24px;
+        padding: 2.5rem;
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+      }
+
+      .team-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(135deg, #4f46e5, #7c3aed, #ec4899);
+      }
+
+      .team-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+        border-color: rgba(124, 58, 237, 0.3);
+      }
+
+      .team-photo {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        margin: 0 auto 1.5rem;
+        object-fit: cover;
+        border: 3px solid rgba(79, 70, 229, 0.3);
+      }
+
+      .team-avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #4f46e5, #7c3aed);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 2.5rem;
+        margin: 0 auto 1.5rem;
+        border: 3px solid rgba(79, 70, 229, 0.3);
+      }
+
+      .team-card h3 {
+        font-size: 1.6rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: #ffffff;
+      }
+
+      .team-position {
+        color: #a78bfa;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+      }
+
+      .team-department {
+        color: #888;
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .team-card p {
+        opacity: 0.85;
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+      }
+
+      .team-social {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .team-social a {
+        color: #a78bfa;
+        text-decoration: none;
+        padding: 0.5rem;
+        border-radius: 50%;
+        border: 1px solid rgba(79, 70, 229, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      .team-social a:hover {
+        background: rgba(79, 70, 229, 0.2);
+        transform: translateY(-2px);
+      }
+
+      /* CTA Section */
+      .cta-section {
+        background: linear-gradient(
+          135deg,
+          rgba(79, 70, 229, 0.1),
+          rgba(124, 58, 237, 0.05)
+        );
+        border-radius: 24px;
+        padding: 4rem 2rem;
+        text-align: center;
+        margin-top: 6rem;
+      }
+
+      .cta-section h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        background: linear-gradient(135deg, #4f46e5, #ec4899);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .cta-section p {
+        font-size: 1.1rem;
+        opacity: 0.8;
+        margin-bottom: 2rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .cta-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1.2rem 2.5rem;
+        background: linear-gradient(135deg, #4f46e5, #7c3aed);
+        color: white;
+        text-decoration: none;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+      }
+
+      .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 35px rgba(124, 58, 237, 0.4);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .btn-primary {
+          display: none;
+        }
+
+        .mobile-menu-btn {
+          display: flex;
+        }
+
+        .hero {
+          padding: 6rem 1rem 4rem;
+        }
+
+        .team-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .main-content {
+          padding: 4rem 1rem;
+        }
+      }
+
+      /* Loading Animation */
+      .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #0a0a0f;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease;
+      }
+
+      .loading-spinner {
+        width: 50px;
+        height: 50px;
+        border: 3px solid rgba(79, 70, 229, 0.3);
+        border-top: 3px solid #4f46e5;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Animated Background -->
+    <div class="stars" id="stars"></div>
+    <div class="nebula"></div>
+
+    <!-- Header -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i class="fas fa-users"></i> Leadership Team
+        </div>
+        <h1>Meet Our Team</h1>
+        <p>
+          The passionate individuals driving our mission to democratize astronomy
+          education and empower the next generation of space scientists through
+          innovative programs and collaborative research.
+        </p>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Leadership Team -->
+      <section class="section">
+        <h2 class="section-title">Leadership Team</h2>
+        <p class="section-description">
+          Our executive team brings together diverse expertise in astronomy,
+          education, technology, and nonprofit management to lead The Stellar
+          Gateway's mission of creating pathways for underrepresented students
+          in STEM.
+        </p>
+
+        <div class="team-grid">
+          <!-- Founder & President -->
+          <div class="team-card">
+            <img src="founder.jpg" alt="Rahul Gupta" class="team-photo" />
+            <h3>Rahul Gupta</h3>
+            <div class="team-position">Founder & President</div>
+            <div class="team-department">Executive Leadership</div>
+            <p>
+              Rahul founded The Stellar Gateway with a vision to make astronomy
+              accessible to students from all backgrounds. As a passionate
+              astronomer and educator, he leads our mission to break down
+              barriers in STEM education.
+            </p>
+            <div class="team-social">
+              <a href="https://linkedin.com/in/rahul-gupta" target="_blank">
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a href="mailto:rahul@stellargateway.org">
+                <i class="fas fa-envelope"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- CTO -->
+          <div class="team-card">
+            <img src="cto.jpg" alt="Alex Chen" class="team-photo" />
+            <h3>Alex Chen</h3>
+            <div class="team-position">Chief Technology Officer</div>
+            <div class="team-department">Technology & Development</div>
+            <p>
+              Alex leads our technology initiatives, developing innovative
+              platforms and tools that enhance astronomy education and research
+              capabilities for our community of students and mentors.
+            </p>
+            <div class="team-social">
+              <a href="https://linkedin.com/in/alex-chen" target="_blank">
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a href="mailto:alex@stellargateway.org">
+                <i class="fas fa-envelope"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- VP of Operations -->
+          <div class="team-card">
+            <div class="team-avatar">SM</div>
+            <h3>Sarah Martinez</h3>
+            <div class="team-position">VP of Operations</div>
+            <div class="team-department">Operations & Administration</div>
+            <p>
+              Sarah oversees the day-to-day operations of our organization,
+              ensuring smooth execution of programs and maintaining strong
+              partnerships with educational institutions and research partners.
+            </p>
+            <div class="team-social">
+              <a href="https://linkedin.com/in/sarah-martinez" target="_blank">
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a href="mailto:sarah@stellargateway.org">
+                <i class="fas fa-envelope"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- VP of Education -->
+          <div class="team-card">
+            <div class="team-avatar">DJ</div>
+            <h3>Dr. David Johnson</h3>
+            <div class="team-position">VP of Education</div>
+            <div class="team-department">Education & Curriculum</div>
+            <p>
+              Dr. Johnson leads our educational initiatives, developing
+              comprehensive astronomy curricula and mentorship programs that
+              prepare students for careers in space science and research.
+            </p>
+            <div class="team-social">
+              <a href="https://linkedin.com/in/david-johnson" target="_blank">
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a href="mailto:david@stellargateway.org">
+                <i class="fas fa-envelope"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- VP of Research -->
+          <div class="team-card">
+            <div class="team-avatar">LK</div>
+            <h3>Lisa Kim</h3>
+            <div class="team-position">VP of Research</div>
+            <div class="team-department">Research & Development</div>
+            <p>
+              Lisa coordinates our research partnerships with leading
+              universities and institutions, facilitating collaborative projects
+              that advance astronomical knowledge and student research opportunities.
+            </p>
+            <div class="team-social">
+              <a href="https://linkedin.com/in/lisa-kim" target="_blank">
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a href="mailto:lisa@stellargateway.org">
+                <i class="fas fa-envelope"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Director of Outreach -->
+          <div class="team-card">
+            <div class="team-avatar">MR</div>
+            <h3>Michael Rodriguez</h3>
+            <div class="team-position">Director of Outreach</div>
+            <div class="team-department">Community & Partnerships</div>
+            <p>
+              Michael builds and maintains relationships with schools,
+              universities, and community organizations to expand our reach and
+              impact in promoting astronomy education and STEM opportunities.
+            </p>
+            <div class="team-social">
+              <a href="https://linkedin.com/in/michael-rodriguez" target="_blank">
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a href="mailto:michael@stellargateway.org">
+                <i class="fas fa-envelope"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Director of Events -->
+          <div class="team-card">
+            <div class="team-avatar">EP</div>
+            <h3>Emma Patel</h3>
+            <div class="team-position">Director of Events</div>
+            <div class="team-department">Events & Programs</div>
+            <p>
+              Emma organizes our signature events, workshops, and conferences
+              that bring together students, researchers, and industry leaders
+              to foster collaboration and innovation in astronomy education.
+            </p>
+            <div class="team-social">
+              <a href="https://linkedin.com/in/emma-patel" target="_blank">
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a href="mailto:emma@stellargateway.org">
+                <i class="fas fa-envelope"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Section -->
+      <section class="cta-section">
+        <h2>Join Our Mission</h2>
+        <p>
+          Ready to make a difference in astronomy education? Join our growing
+          community of students, researchers, and educators working to democratize
+          access to the cosmos.
+        </p>
+        <a href="https://forms.fillout.com/t/8BV75hB38gus" class="cta-button">
+          <i class="fas fa-rocket"></i>
+          Apply to Join Our Team
+        </a>
+      </section>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="components/common.js"></script>
+    <script>
+      // Loading animation
+      function hideLoadingOverlay() {
+        const overlay = document.getElementById("loadingOverlay");
+        setTimeout(() => {
+          overlay.style.opacity = "0";
+          setTimeout(() => {
+            overlay.style.display = "none";
+          }, 500);
+        }, 100);
+      }
+
+      // Enhanced star field with different types
+      function createStars() {
+        const starsContainer = document.getElementById("stars");
+        const numStars = 200;
+
+        for (let i = 0; i < numStars; i++) {
+          const star = document.createElement("div");
+          star.className = "star";
+
+          // Add variety to stars
+          if (Math.random() > 0.8) {
+            star.classList.add("bright");
+          } else if (Math.random() > 0.9) {
+            star.classList.add("distant");
+          }
+
+          star.style.left = Math.random() * 100 + "%";
+          star.style.top = Math.random() * 100 + "%";
+          star.style.width = Math.random() * 3 + 1 + "px";
+          star.style.height = star.style.width;
+          star.style.animationDelay = Math.random() * 4 + "s";
+          star.style.animationDuration = Math.random() * 3 + 3 + "s";
+          starsContainer.appendChild(star);
+        }
+      }
+
+      // Enhanced scroll animations
+      function handleScrollAnimations() {
+        const elements = document.querySelectorAll(
+          ".fade-in, .slide-in-left, .slide-in-right"
+        );
+        const windowHeight = window.innerHeight;
+
+        elements.forEach((element, index) => {
+          const elementTop = element.getBoundingClientRect().top;
+          if (elementTop < windowHeight - 50) {
+            setTimeout(() => {
+              element.classList.add("visible");
+            }, index * 100); // Stagger animations
+          }
+        });
+      }
+
+      // Initialize everything
+      document.addEventListener("DOMContentLoaded", function () {
+        hideLoadingOverlay();
+        createStars();
+        handleScrollAnimations();
+
+        // Add scroll event listeners
+        window.addEventListener("scroll", function () {
+          handleScrollAnimations();
+        });
+
+        // Trigger initial animation check
+        setTimeout(handleScrollAnimations, 200);
+      });
+    </script>
+    <script src="scripts.js"></script>
+  </body>
+</html>
